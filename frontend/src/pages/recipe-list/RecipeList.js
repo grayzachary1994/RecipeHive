@@ -1,7 +1,7 @@
 import React from "react";
 import './recipeList.css';
 
-import RecipeCard from './recipe-list-components/recipeCard.js'
+import RecipeCard from './recipe-list-components/RecipeCard.js'
 
 import clock from '../images/clock.png';
 import recipeData from '../../services/recipeData';
