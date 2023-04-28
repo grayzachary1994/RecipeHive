@@ -5,9 +5,9 @@ import RecipeList from "./RecipeList";
 export default function RecipeListPage() {
 
     return (
-        <>
+        <div>
             <Navbar />
             <RecipeList />
-        </>
+        </div>
     )
 }
