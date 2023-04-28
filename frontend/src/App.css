@@ -1,7 +1,7 @@
 body {
   padding: 0;
   margin: 0;
-  background: rgb(253, 245, 235) url('./images/honeycomb.png');
+  background: rgb(253, 245, 235) url('./pages/images/honeycomb.png');
   background-repeat:repeat-y;
   background-position: center;
   background-size:cover;
