@@ -53,6 +53,10 @@
     background-color: #f5a03b;
   }
 
+  .register--fields > button:hover {
+    background-color: #cd8732;
+  }
+
   .register--links {
     display: flex;
     justify-content: space-around;
