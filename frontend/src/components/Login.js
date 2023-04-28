@@ -7,8 +7,8 @@ export default function Login() {
                 <div className="login--field">
                     <input placeholder="Username"></input>
                     <input placeholder="Password"></input>
-                    <button>Log In</button>
-                </div>
+                    <button className="loginButton">Log In</button>
+                    </div>
                 <div className="login--links">
                     <a href="www.google.com">Forgot password?</a>
                     <a href="www.google.com">Register new user!</a>
