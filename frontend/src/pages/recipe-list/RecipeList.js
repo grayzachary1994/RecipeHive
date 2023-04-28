@@ -1,6 +1,8 @@
 import React from "react";
 import './recipeList.css';
 
+import RecipeCard from './recipe-list-components/RecipeCard.js'
+
 import clock from '../images/clock.png';
 
 export default function RecipeList() {
@@ -23,7 +25,7 @@ export default function RecipeList() {
                     </div>
                 </div>
             </div>
-            
+            <RecipeCard />
         </div>
     )
 }

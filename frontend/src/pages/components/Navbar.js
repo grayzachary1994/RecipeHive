@@ -6,8 +6,8 @@ import HamburgerButton from './hamburgerButton';
 export default function Navbar() {
     return (
         <div className='navbar'>
-            <HamburgerButton></HamburgerButton>
-            <img className='navbar--logo' src={logo}/>
+            <HamburgerButton />
+            <img className='navbar--logo' src={logo} alt='logo'/>
             <h1 className='navbar--title'>Recipe Hive</h1>
         </div>
     )
