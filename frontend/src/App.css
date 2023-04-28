@@ -1,38 +1,98 @@
-.App {
-  text-align: center;
+body {
+  padding: 0;
+  margin: 0;
+  background: rgb(253, 245, 235) url('./images/honeycomb.png');
+  background-repeat:repeat-y;
+  background-position: center;
+  background-size:cover;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.navbar {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-color: #fbd466;
+  text-shadow: 2px 2px 4px black;
+  box-shadow: 2px 2px 5px #9e853f;
 }
 
-.App-link {
-  color: #61dafb;
+.navbar--logo {
+  max-width: 60px;
+  border-radius: 30px;
+  box-shadow: 2px 2px 5px black;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.navbar--title {
+  padding-left: 10px;
+  font-size: 2.5rem;
+  font-family: 'Pacifico', cursive;
+  color: #b1dedd;
+  -webkit-text-stroke: #48bec5;
+  -webkit-text-stroke-width: 1px;
+  text-shadow: black;
+}
+
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 75px;
+  height: 40em;
+  width: auto;
+}
+
+@media(max-width:500px){
+  .page {
+    /* background-color: red; */
+    padding-top: 15%;
   }
-  to {
-    transform: rotate(360deg);
-  }
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 3px;
+  border-style: solid;
+  border-color: #fbd466;
+  border-radius: 8px;
+  width: 300px;
+  height: 14em;
+  padding: 10px;
+  background-color: #fbd466;
+  box-shadow: 2px 2px 5px #99813d;
+}
+
+.login--field {
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+  justify-content: space-around;
+
+}
+
+.login--field > input {
+  font-family: 'Inter', sans-serif;
+  border-radius: 5px;
+  border: none;
+  height: 40px;
+  box-shadow: 2px 2px 1px;
+  text-indent: 10px;
+  /* margin-bottom: .5em; */
+}
+
+.login--field > button {
+  font-family: 'Inter', sans-serif;
+  border-radius: 5px;
+  border: none;
+  height: 40px;
+  box-shadow: 2px 2px 2px;
+  cursor: pointer;
+}
+
+.login--links {
+  display: flex;
+  justify-content: space-around;
+  font-family: 'Inter', sans-serif;
+  padding-top: 10px;
 }
