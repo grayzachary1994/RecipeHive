@@ -161,3 +161,44 @@ body {
 .recipe-card button:hover {
   background-color: #cd8732;
 }
+
+.hamburger-button {
+  display: flex;
+  position: absolute;
+  left:2%;
+  flex-direction: column;
+  cursor: pointer;
+  justify-content: left;
+}
+
+.hamburger-line {
+  width: 30px;
+  height: 3px;
+  background-color: black;
+  margin: 3px 0;
+}
+
+.dropdown-menu {
+  position:absolute;
+  top: 50px;
+  float: left;
+  background-color:#fbd466;
+  border: 1px solid black;
+  padding: 10px;
+  width: auto;
+  max-width: fit-content;
+  z-index: 100;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 5px 0;
+  color:black;
+  text-decoration:none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.dropdown-menu a:hover {
+  background-color: #ffe830;
+  color: black;
+}
