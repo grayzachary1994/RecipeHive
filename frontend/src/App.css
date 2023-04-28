@@ -113,7 +113,10 @@ body {
   border-radius: 5px;
   overflow: hidden;
   background-color: #fff;
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
 }
 
 .recipe-card img {
@@ -146,7 +149,7 @@ body {
 }
 
 .recipe-card button {
-  display: block;
+  display:block;
   margin: 10px auto;
   padding: 10px 20px;
   background-color: #f5a03b;
