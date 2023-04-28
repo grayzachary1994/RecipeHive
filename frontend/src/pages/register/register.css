@@ -1,0 +1,68 @@
+.register--title {
+    font-size: 2.5rem;
+    font-family: 'Pacifico', cursive;
+    color: #b1dedd;
+    -webkit-text-stroke: #48bec5;
+    -webkit-text-stroke-width: 1px;
+    text-shadow: black;
+    text-align: center;
+    text-shadow: 2px 2px 4px black;
+    margin: 0;
+    padding-bottom: 10px;
+}
+
+.register {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border: 3px;
+    border-style: solid;
+    border-color: #fbd466;
+    border-radius: 8px;
+    width: 300px;
+    height: 25em;
+    padding: 10px;
+    background-color: #fbd466;
+    box-shadow: 2px 2px 5px #99813d;
+  }
+
+  .register--fields {
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    justify-content: space-around;
+  
+  }
+
+  .register--fields > input {
+    font-family: 'Inter', sans-serif;
+    border-radius: 5px;
+    border: none;
+    height: 40px;
+    box-shadow: 2px 2px 1px;
+    text-indent: 10px;
+  }
+  
+  .register--fields > button {
+    font-family: 'Inter', sans-serif;
+    border-radius: 5px;
+    border: none;
+    height: 40px;
+    box-shadow: 2px 2px 2px;
+    cursor: pointer;
+    background-color: #f5a03b;
+  }
+
+  .register--links {
+    display: flex;
+    justify-content: space-around;
+    font-family: 'Inter', sans-serif;
+    padding-top: 10px;
+  }
+
+  @media(max-width:500px){
+    .page {
+      /* background-color: red; */
+      padding-top: 15%;
+    }
+  }

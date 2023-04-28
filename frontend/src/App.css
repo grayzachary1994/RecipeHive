@@ -64,7 +64,7 @@ body {
 }
 
 .login--field {
-  display: flex;
+  display: flex; 
   flex-direction: column;
   height: 80%;
   justify-content: space-around;
@@ -78,7 +78,6 @@ body {
   height: 40px;
   box-shadow: 2px 2px 1px;
   text-indent: 10px;
-  /* margin-bottom: .5em; */
 }
 
 .login--field > button {
@@ -88,6 +87,7 @@ body {
   height: 40px;
   box-shadow: 2px 2px 2px;
   cursor: pointer;
+  background-color: #f5a03b;
 }
 
 .login--links {
@@ -95,8 +95,4 @@ body {
   justify-content: space-around;
   font-family: 'Inter', sans-serif;
   padding-top: 10px;
-}
-
-.loginButton{
-  background-color: #f5a03b;
 }
