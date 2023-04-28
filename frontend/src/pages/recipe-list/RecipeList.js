@@ -1,16 +1,25 @@
 import React from "react";
 import './recipeList.css';
 
-import RecipeCard from './recipe-list-components/RecipeCard.js'
+import RecipeCard from './recipe-list-components/recipeCard.js'
 
 import clock from '../images/clock.png';
+import recipeData from '../../services/recipeData';
 
 export default function RecipeList() {
-
+    console.log(recipeData)
+    const recipeElements = recipeData.map((recipe) => {
+        return (
+            <RecipeCard 
+                key={recipe.id}
+                {...recipe}
+            />
+        )
+    })
 
     return (
         <div className="recipeListPage">
-            <div className="recipeCard">
+            {/* <div className="recipeCard">
                 <img 
                     src="https://media.istockphoto.com/id/1341564316/photo/spaghetti-and-meatballs.jpg?b=1&s=170667a&w=0&k=20&c=bSfMJCKXDP2qeFZxlfp6vZDiWCy0Uhhx6v53xZJE5HI="
                     className="recipeCard--image"
@@ -24,8 +33,8 @@ export default function RecipeList() {
                         <h4>Time to cook</h4>
                     </div>
                 </div>
-            </div>
-            <RecipeCard />
+            </div> */}
+            {recipeElements}
         </div>
     )
 }
