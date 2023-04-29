@@ -1,32 +1,35 @@
 package liftoff.recipehive.controllers;
-import liftoff.recipehive.models.User;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import liftoff.recipehive.models.User;
+import liftoff.recipehive.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
-@Controller
-@RequestMapping("user")
+@RestController
+@RequestMapping("api/")
 public class UserController {
 
-    @GetMapping("/add")
-    public String displayAddUserForm(Model model) {
-        model.addAttribute(new User());
-        return "user/add";
-    }
+    @Autowired
+    private UserRepository userRepository;
 
-    @PostMapping
-    public String processAddUserForm(Model model, @ModelAttribute @Valid User user, Errors errors, String verify) {
+//    @GetMapping("add")
+//    public String displayAddUserForm(User user) {
+//        return;
+//    }
 
+    @PostMapping("add/")
+    public String processAddUserForm(@RequestBody @Valid User user, Errors errors) {
         if (!errors.hasErrors()) {
-
-            return "user/index";
+            return "User not created. Please fix errors.";
         } else {
-
-            return "user/add";
+            userRepository.save(user);
+            return "New user added.";
         }
 
     }
