@@ -1,16 +1,22 @@
 package liftoff.recipehive.models;
 
+import jakarta.persistence.Entity;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
-public class Ingredient {
+@Entity
+public class Ingredient extends AbstractEntity {
 
 
-    String name;
-    String type;
-    int caloriesPerGram;
+    private String name;
+    private String type;
+    private int caloriesPerGram;
+
+    public Ingredient() {
+    }
 
     public Ingredient(String name, String type, int caloriesPerGram) {
+        super();
         this.name = name;
         this.type = type;
         this.caloriesPerGram = caloriesPerGram;
