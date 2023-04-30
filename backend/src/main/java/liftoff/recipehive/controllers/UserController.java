@@ -4,15 +4,13 @@ import liftoff.recipehive.models.User;
 import liftoff.recipehive.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("api/")
+@RequestMapping("api/user")
+@CrossOrigin
 public class UserController {
 
     @Autowired
@@ -23,9 +21,9 @@ public class UserController {
 //        return;
 //    }
 
-    @PostMapping("add/")
+    @PostMapping("add")
     public String processAddUserForm(@RequestBody @Valid User user, Errors errors) {
-        if (!errors.hasErrors()) {
+        if (errors.hasErrors()) {
             return "User not created. Please fix errors.";
         } else {
             userRepository.save(user);
