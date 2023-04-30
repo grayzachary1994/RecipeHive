@@ -3,7 +3,7 @@ import './register.css';
 
 export default function RegisterForm() {
     return (
-        <div className="page">
+        <div className="register-page">
             <div className="register">
                 <h1 className="register--title">Register</h1>
                 <div className="register--fields">

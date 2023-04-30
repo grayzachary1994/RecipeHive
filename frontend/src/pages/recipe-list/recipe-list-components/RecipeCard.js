@@ -1,12 +1,6 @@
 import React, { Component, useState } from "react";
 
 export default function RecipeCard(props) {
-  // const [recipe, setRecipe] = useState({
-  //   id: 1,
-  //   title: "Pasta",
-  //   description: "Whatever Description Pasta Has",
-  //   image: "https://via.placeholder.com/150",
-  // });
 
   return (
     <div className="recipe-card">

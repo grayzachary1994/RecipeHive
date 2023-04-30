@@ -1,7 +1,10 @@
 import React from 'react';
+import './components.css';
 
-import logo from '../images/RecipeHiveicon.png'
-import HamburgerButton from './hamburgerButton';
+import logo from '../images/RecipeHiveicon.png';
+
+import HamburgerButton from './HamburgerButton';
+
 
 export default function Navbar() {
     return (
