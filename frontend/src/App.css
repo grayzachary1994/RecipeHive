@@ -6,3 +6,10 @@ body {
   background-position: center;
   background-size:cover;
 }
+
+.error {
+  font-family: 'Inter', sans-serif;
+  color: red;
+  text-align: center;
+  font-weight: 500;
+}
