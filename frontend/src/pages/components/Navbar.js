@@ -3,7 +3,7 @@ import './components.css';
 
 import logo from '../images/RecipeHiveicon.png';
 
-import HamburgerButton from './HamburgerButton';
+import HamburgerButton from './HamburgerButton.js';
 
 
 export default function Navbar() {
