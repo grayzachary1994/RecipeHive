@@ -6,7 +6,6 @@ import RecipeCard from './recipe-list-components/RecipeCard.js'
 import recipeData from '../../services/recipeData';
 
 export default function RecipeList() {
-    console.log(recipeData)
     const recipeElements = recipeData.map((recipe) => {
         return (
             <RecipeCard 
