@@ -7,7 +7,7 @@ const DropdownMenu = ({ isOpen }) => {
     <div className="dropdown-menu" style={menuStyle}>
       <div className='dropdown-container'>
         <a href="/">View Cookbook</a>
-        <a href="/">Add Recipe</a>
+        <a href="/add">Add Recipe</a>
         <a href="/login">Logout</a>
       </div>
       
