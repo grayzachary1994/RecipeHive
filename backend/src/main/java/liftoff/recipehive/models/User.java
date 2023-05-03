@@ -4,12 +4,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.lang.*;
 
 @Entity
 public class User {
@@ -25,21 +24,16 @@ public class User {
     private String email;
 
     @Size(min=6, message="Password must be 6 characters or longer.")
-    private String password;
+    private String pwHash;
 
-    @Size(min=6, message="Password must be 6 characters or longer.")
-    @NotNull(message="Passwords must match.")
-    private String verify;
+    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    public User() {
-
-    }
+    public User() {}
 
     public User(String username, String email, String password) {
-        this();
         this.username = username;
         this.email = email;
-        this.password = password;
+        this.pwHash = encoder.encode(password);
     }
 
     public long getId() {
@@ -54,10 +48,6 @@ public class User {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -66,27 +56,7 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-        checkPassword();
-    }
-
-    public String getVerify() {
-        return verify;
-    }
-
-    public void setVerify(String verify) {
-        this.verify = verify;
-        checkPassword();
-    }
-
-    private void checkPassword() {
-        if(password != null && verify != null && !password.equals(verify)) {
-            setVerify(null);
-        }
+    public boolean isMatchingPassword(String password) {
+        return encoder.matches(password, pwHash);
     }
 }
