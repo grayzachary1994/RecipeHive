@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 import './login.css';
 import userService from "../../services/UserService";
-import { useNavigate } from "react-router-dom";
 
 export default function Login() {
 
@@ -22,8 +21,8 @@ export default function Login() {
     }
     
     async function handleFormSubmit(event) {
+        event.preventDefault();
         try {
-            event.preventDefault();
             await userService.userLogin(formData);
         } catch(e) {
             console.log(e)

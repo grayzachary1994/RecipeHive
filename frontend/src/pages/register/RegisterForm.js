@@ -16,10 +16,11 @@ export default function RegisterForm() {
     })
 
     function handleFormChange(event) {
+        const {name, value} = event.target
         setFormData(prevFormData => {
             return {
                 ...prevFormData,
-                [event.target.name]: event.target.value
+                [name]: value
             }
         })
     }
