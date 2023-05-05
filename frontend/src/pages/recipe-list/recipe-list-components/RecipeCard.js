@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import {FaTimes} from 'react-icons/fa';
 
 import clock from '../../images/clock.png'
 import ExpandedCard from './ExpandedCard';
@@ -35,7 +35,7 @@ export default function RecipeCard(props) {
       {isExpanded && ( 
         <div className='popup-view'>
           <div className='popup'>
-            <button className='close-button' onClick={closeViewRecipe}></button>
+            <button className='close-button' onClick={closeViewRecipe}><FaTimes/></button>
             <ExpandedCard {...props} />
           </div>
         </div>
