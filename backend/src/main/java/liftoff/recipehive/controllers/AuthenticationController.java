@@ -89,23 +89,9 @@ public class AuthenticationController {
         }
     }
 
-//    @GetMapping("login")
-//    public void redirectAfterLogin(HttpServletResponse response) {
-//        response.setHeader("Location", "localhost:3000/");
-//        response.setStatus(302);
-//    }
-
-//    @RequestMapping(value = "login", method = RequestMethod.GET)
-//    public ResponseEntity handleGet(HttpServletResponse response) {
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.add("Location", "localhost:3000/");
-//        return new ResponseEntity(headers, HttpStatus.FOUND);
-//    }
-
-
     @GetMapping("login-check")
     public String loginCheck(HttpSession session) {
-        return session.getAttribute(userSessionKey) + " " + session.getAttribute("loggedIn") + " " + "Logged in.";
+        return session.getAttribute(userSessionKey).toString();
     }
 
     @GetMapping("logout")
