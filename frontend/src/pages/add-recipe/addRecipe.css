@@ -1,78 +1,116 @@
 .recipe-page {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding-top: 75px;
-    height: 70em;
-    width: auto;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 75px;
+  height: 70em;
+  width: auto;
+}
 
-  .add-recipe {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    border: 3px;
-    border-style: solid;
-    border-color: #fbd466;
-    border-radius: 8px;
-    width: 500px;
-    height: max-content;
-    padding: 10px;
-    background-color: #fbd466;
-    box-shadow: 2px 2px 5px #99813d;
-  }
+.add-recipe {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 3px;
+  border-style: solid;
+  border-color: #fbd466;
+  border-radius: 8px;
+  width: 500px;
+  height: max-content;
+  padding: 10px;
+  background-color: #fbd466;
+  box-shadow: 2px 2px 5px #99813d;
+}
 
-  input[type=text], select {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    border-radius: 5px;
-    border: none;
-    height: 30px;
-    box-shadow: 2px 2px 1px;
-  }
+input[type="text"],
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: none;
+  height: 30px;
+  box-shadow: 2px 2px 1px;
+}
 
-  .recipe-step {
-      font: 100% / normal sans-serif;
-      font-weight: bold;
-  }
+.recipe-name {
+  font: 100% / normal sans-serif;
+  font-weight: bold;
+}
 
-  .add-recipe > button {
-    font-family: 'Inter', sans-serif;
-    border-radius: 5px;
-    border: none;
-    height: 40px;
-    box-shadow: 2px 2px 2px;
-    cursor: pointer;
-    background-color: #f5a03b;
-  }
+.recipe-description {
+  font: 100% / normal sans-serif;
+  font-weight: bold;
+}
 
-  .add-recipe > button:hover{
-    background-color: #cd8732;
-  }
+.recipe-ingredients {
+  font: 100% / normal sans-serif;
+  font-weight: bold;
+}
 
-  h1{
-    font-family: 'Pacifico', cursive;
-    align-self: center;
-  }
+.recipe-steps {
+  font: 100% / normal sans-serif;
+  font-weight: bold;
+}
 
-  .extraInput {
-    font-family: 'Inter', sans-serif;
-    border-radius: 5px;
-    border: none;
-    height: 20px;
-    box-shadow: 2px 2px 2px;
-    cursor: pointer;
-    background-color: #f5a03b;
-  }
+.recipe-time {
+  font: 100% / normal sans-serif;
+  font-weight: bold;
+  align-items:first baseline;
+}
 
-  .extraInput:hover {
-     background-color: #cd8732;
-  }
+.recipe-image {
+  font: 100% / normal sans-serif;
+  font-weight: bold;
+  align-items:first baseline;
+}
 
-  .add-recipe-input{
-    margin:10px
-  }
+
+.add-recipe > button {
+  font-family: "Inter", sans-serif;
+  border-radius: 5px;
+  border: none;
+  height: 40px;
+  box-shadow: 2px 2px 2px;
+  cursor: pointer;
+  background-color: #f5a03b;
+}
+
+.add-recipe > button:hover {
+  background-color: #cd8732;
+}
+
+h1 {
+  font-family: "Pacifico", cursive;
+  align-self: center;
+  color: #b1dedd;
+  -webkit-text-stroke: #48bec5;
+  -webkit-text-stroke-width: 1px;
+  text-shadow: black;
+  text-shadow: 2px 2px 4px black;
+}
+
+.extraInput {
+  font-family: "Inter", sans-serif;
+  border-radius: 5px;
+  border: none;
+  height: 20px;
+  box-shadow: 2px 2px 2px;
+  cursor: pointer;
+  background-color: #f5a03b;
+}
+
+.extraInput:hover {
+  background-color: #cd8732;
+}
+
+.add-recipe-input {
+  margin: 10px;
+}
+
+.preview-image{
+  max-width: 200px;
+}

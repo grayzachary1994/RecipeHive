@@ -1,19 +1,6 @@
 import React, { useState } from 'react';
 
-const DropdownMenu = ({ isOpen }) => {
-  const menuStyle = isOpen ? { display: 'block' } : { display: 'none' };
-
-  return (
-    <div className="dropdown-menu" style={menuStyle}>
-      <div className='dropdown-container'>
-        <a href="/">View Cookbook</a>
-        <a href="/add">Add Recipe</a>
-        <a href="/login">Logout</a>
-      </div>
-      
-    </div>
-  );
-};
+import DropdownMenu from './DropdownMenu';
 
 const HamburgerButton = () => {
   const [isOpen, setIsOpen] = useState(false);
