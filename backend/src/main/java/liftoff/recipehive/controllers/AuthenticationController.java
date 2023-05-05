@@ -23,6 +23,7 @@ public class AuthenticationController {
 
     private static final String userSessionKey = "user";
 
+
     public User getUserFromSession(HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
         if (userId == null) {
@@ -66,8 +67,8 @@ public class AuthenticationController {
 
     @GetMapping("add")
     public void redirectAfterAddingUser(HttpServletResponse response) {
-        response.setHeader("Location", "localhost:3000/");
-        response.setStatus(302);
+//        response.setHeader("Location", "localhost:3000/");
+//        response.setStatus(302);
     }
 
 
@@ -80,17 +81,19 @@ public class AuthenticationController {
             return "Login failed.";
         } else {
             setUserInSession(request.getSession(), existingUser);
-            response.setHeader("Location", "localhost:3000/");
+//            response.setHeader("Location", "localhost:3000/");
 //            response.setStatus(302);
+            HttpSession session = request.getSession();
+            session.setAttribute("loggedIn", "Yes");
             return "Login successful.";
         }
     }
 
-    @GetMapping("login")
-    public void redirectAfterLogin(HttpServletResponse response) {
-        response.setHeader("Location", "localhost:3000/");
-        response.setStatus(302);
-    }
+//    @GetMapping("login")
+//    public void redirectAfterLogin(HttpServletResponse response) {
+//        response.setHeader("Location", "localhost:3000/");
+//        response.setStatus(302);
+//    }
 
 //    @RequestMapping(value = "login", method = RequestMethod.GET)
 //    public ResponseEntity handleGet(HttpServletResponse response) {
@@ -99,11 +102,17 @@ public class AuthenticationController {
 //        return new ResponseEntity(headers, HttpStatus.FOUND);
 //    }
 
+
+    @GetMapping("login-check")
+    public String loginCheck(HttpSession session) {
+        return session.getAttribute(userSessionKey) + " " + session.getAttribute("loggedIn") + " " + "Logged in.";
+    }
+
     @GetMapping("logout")
     public String logout(HttpServletRequest request, HttpServletResponse response) {
         request.getSession().invalidate();
-        response.setHeader("Location", "localhost:3000/login");
-        response.setStatus(302);
+//        response.setHeader("Location", "localhost:3000/login");
+//        response.setStatus(302);
         return "Logged out.";
     }
 
