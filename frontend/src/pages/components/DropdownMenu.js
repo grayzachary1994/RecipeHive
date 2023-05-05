@@ -1,15 +1,15 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import userService from "../../services/UserService";
 
 export default function DropdownMenu({isOpen}) {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const menuStyle = isOpen ? {display: 'block'} : {display: 'none'};
 
     function handleLogout(){
         userService.userLogout()
-        navigate('/login')
+        // navigate('/login')
     }
 
     return (

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 import './register.css';
 import userService from "../../services/UserService";
 
 export default function RegisterForm() {
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const [isMatching, setIsMatching] = useState(true);
     const [formData, setFormData] = useState({
@@ -46,7 +46,7 @@ export default function RegisterForm() {
                     password: '',
                     verify: ''
                 })
-                navigate('/');
+                // navigate('/');
             }
         }
         catch(e) {
