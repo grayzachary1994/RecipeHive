@@ -1,13 +1,12 @@
 package liftoff.recipehive.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import javax.validation.constraints.NotBlank;
+import jakarta.persistence.*;
+
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.lang.*;
+
+import java.util.List;
+
 @Entity
 public class Recipe {
     @Id
@@ -17,17 +16,19 @@ public class Recipe {
     private String name;
     @Size(min=5, message="Description must be 5 characters or longer.")
     private String description;
-    @NotBlank(message = "Ingredients required.")
-    private ArrayList<String> ingredients;
-    @NotBlank(message = "Steps required.")
-    private ArrayList<String> steps;
+    @NotEmpty(message = "Ingredients required.")
+    @ElementCollection
+    private List<String> ingredients;
+    @NotEmpty(message = "Steps required.")
+    @ElementCollection
+    private List<String> steps;
     private String time;
     public Recipe(){
 
     }
 
-    public Recipe(String name, String description, ArrayList<String> ingredients,
-                  ArrayList<String> steps, String time) {
+    public Recipe(String name, String description, List<String> ingredients,
+                  List<String> steps, String time) {
         this();
         this.name = name;
         this.description = description;
@@ -36,7 +37,7 @@ public class Recipe {
         this.time = time;
     }
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -60,27 +61,27 @@ public class Recipe {
         this.description = description;
     }
 
-    public ArrayList<String> getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(ArrayList<String> ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    public ArrayList<String> getSteps() {
-        return steps;
-    }
-
-    public void setSteps(ArrayList<String> steps) {
-        this.steps = steps;
-    }
-
     public String getTime() {
         return time;
     }
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public List<String> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<String> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public List<String> getSteps() {
+        return steps;
+    }
+
+    public void setSteps(List<String> steps) {
+        this.steps = steps;
     }
 }

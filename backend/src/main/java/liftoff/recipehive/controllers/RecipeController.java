@@ -1,16 +1,15 @@
 package liftoff.recipehive.controllers;
 import liftoff.recipehive.models.Recipe;
-import liftoff.*;
 import liftoff.recipehive.repositories.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
-import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/recipe")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
 public class RecipeController {
     @Autowired
     private RecipeRepository recipeRepository;
@@ -31,9 +30,8 @@ public class RecipeController {
     }
 
     @GetMapping
-    public ArrayList<Recipe> displayCookbook(@RequestParam(required = false) Integer recipeId) {
-        return (ArrayList<Recipe>) recipeRepository.findAll();
-
+    public List<Recipe> displayCookbook() {
+        return recipeRepository.findAll();
     }
-}
+    }
 

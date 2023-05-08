@@ -1,16 +1,26 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import './recipeList.css';
 
 import RecipeCard from './recipe-list-components/RecipeCard.js'
 
-import recipeData from '../../services/recipeData';
+import RecipeService from "../../services/RecipeService";
+
 
 export default function RecipeList() {
-    const recipeElements = recipeData.map((recipe) => {
+    const [recipes, setRecipes] = useState([]);
+    
+
+    useEffect(() => {
+        RecipeService.getRecipe().then(response => {
+            setRecipes(response.data);
+        })
+        }, []);
+
+    const recipeElements = recipes.map((recipe)=> {
         return (
-            <RecipeCard 
-                key={recipe.id}
-                {...recipe}
+            <RecipeCard
+            key = {recipe.id}
+            {...recipe}
             />
         )
     })
@@ -20,4 +30,4 @@ export default function RecipeList() {
             {recipeElements}
         </div>
     )
-}
+    }
