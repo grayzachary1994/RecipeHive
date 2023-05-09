@@ -93,6 +93,10 @@ h1 {
   text-shadow: 2px 2px 4px black;
 }
 
+input {
+  font-family: "Inter", sans-serif;
+}
+
 .extraInput {
   font-family: "Inter", sans-serif;
   border-radius: 5px;
@@ -102,6 +106,31 @@ h1 {
   cursor: pointer;
   background-color: #f5a03b;
 }
+
+ul {
+  display: flex;
+  flex-direction: column;
+  font-family: "Inter", sans-serif;
+}
+
+ol {
+  display: flex;
+  flex-direction: column;
+  font-family: "Inter", sans-serif;
+}
+
+.flex-button {
+  display: flex;
+  justify-content: end;
+  
+}
+
+.flex-button > button {
+  border-radius: 5px;
+  background-color: #ea513a;
+  color: white;
+}
+
 
 .extraInput:hover {
   background-color: #cd8732;

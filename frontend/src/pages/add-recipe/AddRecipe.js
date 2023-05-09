@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./addRecipe.css";
 
 let nextId = 0;
-let nextStep = 0;
 
 export default function AddRecipe() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -53,7 +52,8 @@ export default function AddRecipe() {
     setIngredientArr([
       ...ingredientArr,
       {id: nextId++, name: ingredientName}
-    ])
+    ]);
+    setIngredientName('');
   }
 
   function handleStep(event) {
@@ -64,8 +64,9 @@ export default function AddRecipe() {
   function addStep() {
     setStepArr([
       ...stepArr,
-      {id: nextStep++, name: stepStr}
-    ])
+      {id: nextId++, name: stepStr}
+    ]);
+    setStepStr('');
   }
 
   function handleFormData(event) {
@@ -118,14 +119,16 @@ export default function AddRecipe() {
           <button className="extraInput" onClick={addIngredient}>Add Ingredient</button>
           <ul>
             {ingredientArr.map((ingredient) => (
-                <li key={ingredient.id}>
-                  {ingredient.name}
+              <li key={ingredient.id}>
+                {ingredient.name}
+                <div className="flex-button">
                   <button onClick={() => {
                     setIngredientArr(
                       ingredientArr.filter(a => a.id !== ingredient.id)
                     )
                   }}>X</button>
-                </li>
+                  </div>
+              </li>
             ))}
           </ul>
         </div>
@@ -142,12 +145,15 @@ export default function AddRecipe() {
           <button className="extraInput" onClick={addStep}>Add Step</button>
           <ol>
             {stepArr.map((step) => (
-                <li key={step.id}>{step.name}
-                  <button onClick={() => {
-                    setStepArr(
-                      stepArr.filter(a => a.id !== step.id)
-                    )
-                  }}>X</button>
+                <li key={step.id}>
+                  {step.name}
+                  <div className="flex-button">
+                    <button onClick={() => {
+                      setStepArr(
+                        stepArr.filter(a => a.id !== step.id)
+                      )
+                    }}>X</button>
+                  </div>
                 </li>
             ))}
           </ol>
