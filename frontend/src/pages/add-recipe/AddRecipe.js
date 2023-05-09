@@ -1,21 +1,8 @@
 import React, { useState } from "react";
 import "./addRecipe.css";
 
-function addInputToIngredient() {
-  const inputContainer = document.querySelector(
-    ".multipleIngredient-container"
-  );
-  const input = document.createElement("input");
-  input.type = "text";
-  inputContainer.appendChild(input);
-}
-
-function addInputToSteps() {
-  const inputContainer = document.querySelector(".multipleSteps-container");
-  const input = document.createElement("input");
-  input.type = "text";
-  inputContainer.appendChild(input);
-}
+let nextId = 0;
+let nextStep = 0;
 
 export default function AddRecipe() {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -37,8 +24,6 @@ export default function AddRecipe() {
     time: ''
   });
   
-  
-
   const fileInputChange = (selectedImage) => {
     setSelectedFile(selectedImage.target.files[0]);
     setPreview(URL.createObjectURL(selectedImage.target.files[0]));
@@ -63,11 +48,11 @@ export default function AddRecipe() {
     const { value } = event.target;
     setIngredientName(value)
   }
-
+  
   function addIngredient() {
     setIngredientArr([
       ...ingredientArr,
-      ingredientName
+      {id: nextId++, name: ingredientName}
     ])
   }
 
@@ -79,12 +64,11 @@ export default function AddRecipe() {
   function addStep() {
     setStepArr([
       ...stepArr,
-      stepStr
+      {id: nextStep++, name: stepStr}
     ])
   }
 
-  function handleFormSubmit(event) {
-    event.preventDefault();
+  function handleFormData(event) {
     setFormData({
       recipeName: recipeName,
       description: description,
@@ -94,8 +78,10 @@ export default function AddRecipe() {
     })
   }
 
-
-  // console.log(formData)
+  function handleFormSubmit(event) {
+    event.preventDefault();
+    console.log(formData, 'You submitted!')
+  }
 
   return (
     <div className="recipe-page">
@@ -131,11 +117,15 @@ export default function AddRecipe() {
           </div>
           <button className="extraInput" onClick={addIngredient}>Add Ingredient</button>
           <ul>
-            {ingredientArr.map((ingredient, index) => (
-              <>
-                <li key={index}>{ingredient}</li>
-                {/* <button>X</button> */}
-              </>
+            {ingredientArr.map((ingredient) => (
+                <li key={ingredient.id}>
+                  {ingredient.name}
+                  <button onClick={() => {
+                    setIngredientArr(
+                      ingredientArr.filter(a => a.id !== ingredient.id)
+                    )
+                  }}>X</button>
+                </li>
             ))}
           </ul>
         </div>
@@ -150,14 +140,17 @@ export default function AddRecipe() {
             />
           </div>
           <button className="extraInput" onClick={addStep}>Add Step</button>
-          <ul>
-            {stepArr.map((step, index) => (
-              <>
-                <li key={index}>{step}</li>
-                {/* <button>X</button> */}
-              </>
+          <ol>
+            {stepArr.map((step) => (
+                <li key={step.id}>{step.name}
+                  <button onClick={() => {
+                    setStepArr(
+                      stepArr.filter(a => a.id !== step.id)
+                    )
+                  }}>X</button>
+                </li>
             ))}
-          </ul>
+          </ol>
         </div>
         <div className="add-recipe-input">
           <label className="recipe-time">Time to Cook: </label>
@@ -173,7 +166,9 @@ export default function AddRecipe() {
           <input type="file" onChange={fileInputChange}></input>
           {preview && <img className="preview-image"src={preview} alt="Preview"/>}
         </div>
-        <button onClick={handleFormSubmit}>Add Recipe to Your Hive!</button>
+        <button 
+        onMouseEnter={handleFormData}
+        onClick={handleFormSubmit}>Add Recipe to Your Hive!</button>
       </div>
     </div>
   );
