@@ -8,7 +8,7 @@ const LOGIN_URL = '/api/auth/signin';
 
 export default function Login() {
 
-    const { setAuth } = useContext(AuthContext)
+    const { setAuth, auth } = useContext(AuthContext)
 
     const [formData, setFormData] = useState({
         username: '',
@@ -31,14 +31,20 @@ export default function Login() {
             const response = await userService.post(LOGIN_URL, formData,
                 {
                     headers: { 'Content-Type': 'application/json'},
-                    withCredentials: true
+                    // withCredentials: true
                 });
+                const accessToken = response.data.accessToken;
+                const roles = response.data.roles;
+                const name = response.data.username;
+                const pass = response.data.password;
+                setAuth({ name, pass, roles, accessToken})
             setFormData({
                 username: '',
                 password: ''
             })
-        } catch(e) {
-            console.log(e)
+            console.log(auth.pass)
+        } catch(err) {
+            console.log(err, "Login Failed")
         }
     }
 
