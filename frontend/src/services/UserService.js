@@ -3,7 +3,10 @@ import axios from 'axios';
 class UserService {
 
     saveUser(user) {
-        return axios.post('http://localhost:8080/api/user/add', user)
+        return axios.post('http://localhost:8080/api/auth/signup', user)
+            .then(function (response) {
+                console.log(response.data)
+            })
     }
 
     userLogin(user) {
