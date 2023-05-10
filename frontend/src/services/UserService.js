@@ -10,7 +10,10 @@ class UserService {
     }
 
     userLogin(user) {
-        return axios.post('http://localhost:8080/api/user/login', user)
+        return axios.post('http://localhost:8080/api/auth/signin', user)
+            .then(function (response) {
+                console.log(response.data.accessToken)
+            })
     }
 
     userLogout() {
