@@ -1,22 +1,28 @@
 import React from "react";
-// import { useNavigate } from "react-router-dom";
-import userService from "../../services/UserService";
+import { useNavigate } from "react-router-dom";
 
 export default function DropdownMenu({isOpen}) {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const menuStyle = isOpen ? {display: 'block'} : {display: 'none'};
 
+    function handleViewCookbook() {
+        navigate('/home')
+    }
+
+    function handleAddRecipe() {
+        navigate('/add')
+    }
+
     function handleLogout(){
-        // userService.userLogout()
-        // navigate('/login')
+        navigate('/login')
     }
 
     return (
         <div className="dropdown-menu" style={menuStyle}>
             <div className='dropdown-container'>
-                <a href="/">View Cookbook</a>
-                <a href="/add">Add Recipe</a>
+                <p onClick={handleViewCookbook}>View Cookbook</p>
+                <p onClick={handleAddRecipe}>Add Recipe</p>
                 <p onClick={handleLogout}>Logout</p>
             </div>
         </div>

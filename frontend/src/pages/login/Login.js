@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import useAuth from "../../auth/useAuth";
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import './login.css';
 
@@ -12,7 +12,7 @@ export default function Login() {
 
     const navigate = useNavigate();
     const location = useLocation();
-    const from = location.state?.from?.pathname || '/';
+    const from = location.state?.from?.pathname || '/home';
 
     const [formData, setFormData] = useState({
         username: '',
