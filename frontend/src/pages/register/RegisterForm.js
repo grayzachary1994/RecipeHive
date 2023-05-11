@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-// import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import './register.css';
 import userService from "../../services/UserService";
 const REGISTER_URL = 'api/auth/signup';
 
 export default function RegisterForm() {
 
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const [isMatching, setIsMatching] = useState(true);
     const [verify, setVerify] = useState('');
@@ -15,6 +15,10 @@ export default function RegisterForm() {
         email: '',
         password: '',
     })
+
+    function handleLoginRedirect() {
+        navigate('/login')
+    }
 
     function handleFormChange(event) {
         const {name, value} = event.target
@@ -46,14 +50,18 @@ export default function RegisterForm() {
                 })
             } else {
                 event.preventDefault();
-                await userService.post(REGISTER_URL, formData);
-                setFormData({
-                    username: '',
-                    email: '',
-                    password: ''
-                })
-                setVerify('');
-                // navigate('/');
+                const response = await userService.post(REGISTER_URL, formData);
+                console.log(response.status)
+                if (response.status === 200) {
+                    navigate('/login')
+                } else {
+                    setFormData({
+                        username: '',
+                        email: '',
+                        password: ''
+                    })
+                    setVerify('');
+                }
             }
         }
         catch(e) {
@@ -99,7 +107,7 @@ export default function RegisterForm() {
                 </div>
                 <div className="register--links">
                     <a href="www.google.com">Forgot password?</a>
-                    <a href='/login'>Already a user? Log in!</a>
+                    <p onClick={handleLoginRedirect}>Already a user? Log in!</p>
                 </div>
             </div>
         </div>

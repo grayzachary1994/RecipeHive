@@ -19,6 +19,10 @@ export default function Login() {
         password: ''
     })
 
+    function handleRegisterRedirect() {
+        navigate('/register')
+    }
+
     function handleFormChange(event){
         const {name, value} = event.target
         setFormData(prevFormData => {
@@ -81,7 +85,7 @@ export default function Login() {
                 </div>
                 <div className="login--links">
                     <a href="www.google.com">Forgot password?</a>
-                    <a href="/register">Register new user!</a>
+                    <p onClick={handleRegisterRedirect}>Register new user!</p>
                 </div>
                 {/* <button onClick={testToken}>Click me</button> */}
             </div>
