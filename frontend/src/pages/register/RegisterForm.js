@@ -2,17 +2,18 @@ import React, { useState } from "react";
 // import { useNavigate } from 'react-router-dom'
 import './register.css';
 import userService from "../../services/UserService";
+const REGISTER_URL = 'api/auth/signup';
 
 export default function RegisterForm() {
 
     // const navigate = useNavigate();
 
     const [isMatching, setIsMatching] = useState(true);
+    const [verify, setVerify] = useState('');
     const [formData, setFormData] = useState({
         username: '',
         email: '',
         password: '',
-        verify: ''
     })
 
     function handleFormChange(event) {
@@ -25,27 +26,33 @@ export default function RegisterForm() {
         })
     }
 
+    function handleVerify(event) {
+        const {value} = event.target;
+        setVerify(value)
+        
+    }
+
     async function handleFormSubmit(event) {
         try {
-            if (formData.password !== formData.verify) {
+            if (formData.password !== verify) {
                 event.preventDefault();
                 setIsMatching(false);
+                setVerify('')
                 setFormData(prevFormData => {
                     return {
                         ...prevFormData,
-                        password: '',
-                        verify: ''
+                        password: ''
                     }
                 })
             } else {
                 event.preventDefault();
-                await userService.saveUser(formData);
+                await userService.post(REGISTER_URL, formData);
                 setFormData({
                     username: '',
                     email: '',
-                    password: '',
-                    verify: ''
+                    password: ''
                 })
+                setVerify('');
                 // navigate('/');
             }
         }
@@ -84,8 +91,8 @@ export default function RegisterForm() {
                         type="password"
                         name="verify"
                         placeholder="Confirm Password"
-                        onChange={handleFormChange}
-                        value={formData.verify}
+                        onChange={handleVerify}
+                        value={verify}
                     />
                     {!isMatching && <p className="error">Passwords do not match!</p>}
                     <button onClick={handleFormSubmit} className="registerButton">Register</button>
