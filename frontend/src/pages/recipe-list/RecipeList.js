@@ -11,6 +11,7 @@ export default function RecipeList() {
     
 
     useEffect(() => {
+        console.log(RecipeService.getRecipe())
         RecipeService.getRecipe().then(response => {
             setRecipes(response.data);
         })

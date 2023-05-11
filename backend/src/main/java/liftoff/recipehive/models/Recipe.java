@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -17,18 +18,16 @@ public class Recipe {
     @Size(min=5, message="Description must be 5 characters or longer.")
     private String description;
     @NotEmpty(message = "Ingredients required.")
-    @ElementCollection
-    private List<String> ingredients;
+    private String ingredients;
     @NotEmpty(message = "Steps required.")
-    @ElementCollection
-    private List<String> steps;
+    private String steps;
     private String time;
     public Recipe(){
 
     }
 
-    public Recipe(String name, String description, List<String> ingredients,
-                  List<String> steps, String time) {
+    public Recipe(String name, String description, String ingredients,
+                  String steps, String time) {
         this();
         this.name = name;
         this.description = description;
@@ -70,18 +69,18 @@ public class Recipe {
     }
 
     public List<String> getIngredients() {
-        return ingredients;
+        return Arrays.asList(ingredients.split("`"));
     }
 
     public void setIngredients(List<String> ingredients) {
-        this.ingredients = ingredients;
+        this.ingredients = String.join("`", ingredients);
     }
 
     public List<String> getSteps() {
-        return steps;
+        return Arrays.asList(steps.split("`"));
     }
 
     public void setSteps(List<String> steps) {
-        this.steps = steps;
+        this.steps = String.join("`", steps);
     }
 }

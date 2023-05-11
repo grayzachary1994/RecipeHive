@@ -2,6 +2,7 @@ package liftoff.recipehive.controllers;
 import liftoff.recipehive.models.Recipe;
 import liftoff.recipehive.repositories.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
@@ -30,8 +31,9 @@ public class RecipeController {
     }
 
     @GetMapping
-    public List<Recipe> displayCookbook() {
-        return recipeRepository.findAll();
+    public ResponseEntity<List<Recipe>> displayCookbook() {
+        List<Recipe> recipes = recipeRepository.findAll();
+        return ResponseEntity.ok(recipes);
     }
-    }
+}
 
