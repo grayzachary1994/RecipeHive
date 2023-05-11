@@ -30,8 +30,7 @@ export default function Login() {
         try {
             const response = await userService.post(LOGIN_URL, formData,
                 {
-                    headers: { 'Content-Type': 'application/json'},
-                    // withCredentials: true
+                    headers: { 'Content-Type': 'application/json'}
                 });
                 const accessToken = response.data.accessToken;
                 const roles = response.data.roles;
@@ -46,6 +45,15 @@ export default function Login() {
             console.log(err, "Login Failed")
         }
     }
+
+    // async function testToken(event) {
+    //     event.preventDefault()
+    //     const response = await userService.get('api/test/user',
+    //         {
+    //             headers: {Authorization: `Bearer ${auth.accessToken}`}
+    //         });
+    //     console.log(response.data)
+    // }
 
     return (
         <div className="login-page">
@@ -70,7 +78,7 @@ export default function Login() {
                     <a href="www.google.com">Forgot password?</a>
                     <a href="/register">Register new user!</a>
                 </div>
-                
+                {/* <button onClick={testToken}>Click me</button> */}
             </div>
         </div>
         
