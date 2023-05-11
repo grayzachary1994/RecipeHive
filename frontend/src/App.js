@@ -19,7 +19,7 @@ function App() {
 
           {/* private routes */}
           <Route element={<RequireAuth />}>
-            <Route path='home' Component={RecipeListPage}></Route>
+            <Route path='/' Component={RecipeListPage}></Route>
             <Route path='add' Component={AddRecipePage}></Route>
           </Route>
         </Route>

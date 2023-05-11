@@ -7,7 +7,7 @@ export default function DropdownMenu({isOpen}) {
     const menuStyle = isOpen ? {display: 'block'} : {display: 'none'};
 
     function handleViewCookbook() {
-        navigate('/home')
+        navigate('/')
     }
 
     function handleAddRecipe() {
