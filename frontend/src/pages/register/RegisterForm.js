@@ -2,6 +2,7 @@ import React, { useState } from "react";
 // import { useNavigate } from 'react-router-dom'
 import './register.css';
 import userService from "../../services/UserService";
+const REGISTER_URL = 'api/auth/signup';
 
 export default function RegisterForm() {
 
@@ -26,7 +27,7 @@ export default function RegisterForm() {
     }
 
     function handleVerify(event) {
-        const {name, value} = event.target;
+        const {value} = event.target;
         setVerify(value)
         
     }
@@ -45,7 +46,7 @@ export default function RegisterForm() {
                 })
             } else {
                 event.preventDefault();
-                await userService.saveUser(formData);
+                await userService.post(REGISTER_URL, formData);
                 setFormData({
                     username: '',
                     email: '',

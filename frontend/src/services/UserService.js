@@ -2,11 +2,11 @@ import axios from 'axios';
 
 // class UserService {
 
-//     saveUser(user) {
-//         return axios.post('http://localhost:8080/api/auth/signup', user)
-//             .then(function (response) {
-//                 console.log(response.data)
-//             })
+//     saveUser(user, headers) {
+//         return axios.post('http://localhost:8080/api/auth/signup', user, headers)
+//             // .then(function (response) {
+//             //     console.log(response.data)
+//             // })
 //     }
 
 //     userLogin(user) {

@@ -42,7 +42,6 @@ export default function Login() {
                 username: '',
                 password: ''
             })
-            console.log(auth.pass)
         } catch(err) {
             console.log(err, "Login Failed")
         }
