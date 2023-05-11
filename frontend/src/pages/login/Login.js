@@ -1,14 +1,18 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
+import useAuth from "../../auth/useAuth";
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 import './login.css';
-import AuthContext from '../../context/AuthProvider';
 
 import userService from "../../services/UserService";
 const LOGIN_URL = '/api/auth/signin';
 
 export default function Login() {
+    const { setAuth, auth } = useAuth();
 
-    const { setAuth, auth } = useContext(AuthContext)
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
     const [formData, setFormData] = useState({
         username: '',
@@ -41,6 +45,7 @@ export default function Login() {
                 username: '',
                 password: ''
             })
+            navigate(from, { replace: true });
         } catch(err) {
             console.log(err, "Login Failed")
         }

@@ -8,7 +8,7 @@ export default function DropdownMenu({isOpen}) {
     const menuStyle = isOpen ? {display: 'block'} : {display: 'none'};
 
     function handleLogout(){
-        userService.userLogout()
+        // userService.userLogout()
         // navigate('/login')
     }
 

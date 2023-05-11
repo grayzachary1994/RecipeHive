@@ -1,4 +1,5 @@
 import './App.css';
+import RequireAuth from './pages/components/RequireAuth';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 import LoginPage from './pages/login/LoginPage';
@@ -11,10 +12,15 @@ function App() {
     <div>
       <Router>
         <Routes>
-          <Route path='/' Component={RecipeListPage}></Route>
+          {/* public routes */}
           <Route path='/login' Component={LoginPage}></Route>
           <Route path='/register' Component={RegisterPage}></Route>
-          <Route path='/add' Component={AddRecipePage}></Route>
+
+          {/* private routes */}
+          <Route Component={RequireAuth}>
+            <Route path='/' Component={RecipeListPage}></Route>
+            <Route path='/add' Component={AddRecipePage}></Route>
+          </Route>
         </Routes>
       </Router>
     </div>
