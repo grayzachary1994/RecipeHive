@@ -20,6 +20,10 @@ export default function RegisterForm() {
         navigate('/login')
     }
 
+    function handleForgotPassword(){
+        // navigate('http://www.google.com')
+    }
+
     function handleFormChange(event) {
         const {name, value} = event.target
         setFormData(prevFormData => {
@@ -75,6 +79,7 @@ export default function RegisterForm() {
                 <h1 className="register--title">Register</h1>
                 <div className="register--fields">
                     <input 
+                        className="register--inputs"
                         type="text"
                         name="username"
                         placeholder="Username"
@@ -82,6 +87,7 @@ export default function RegisterForm() {
                         value={formData.username} 
                     />
                     <input 
+                        className="register--inputs"
                         type="email"
                         name="email"
                         placeholder="Email"
@@ -89,6 +95,7 @@ export default function RegisterForm() {
                         value={formData.email} 
                     />
                     <input 
+                        className="register--inputs"
                         type="password"
                         name="password"
                         placeholder="Password"
@@ -96,6 +103,7 @@ export default function RegisterForm() {
                         value={formData.password} 
                     />
                     <input 
+                        className="register--inputs"
                         type="password"
                         name="verify"
                         placeholder="Confirm Password"
@@ -106,8 +114,8 @@ export default function RegisterForm() {
                     <button onClick={handleFormSubmit} className="registerButton">Register</button>
                 </div>
                 <div className="register--links">
-                    <a href="www.google.com">Forgot password?</a>
-                    <p onClick={handleLoginRedirect}>Already a user? Log in!</p>
+                    <button onClick={handleForgotPassword}>Forgot password?</button>
+                    <button onClick={handleLoginRedirect}>Already a user? Log in!</button>
                 </div>
             </div>
         </div>

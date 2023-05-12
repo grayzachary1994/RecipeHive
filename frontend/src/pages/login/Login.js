@@ -23,6 +23,10 @@ export default function Login() {
         navigate('/register')
     }
 
+    function handleForgotPassword() {
+        
+    }
+
     function handleFormChange(event){
         const {name, value} = event.target
         setFormData(prevFormData => {
@@ -84,8 +88,8 @@ export default function Login() {
                     <button onClick={handleFormSubmit}>Log In</button>
                 </div>
                 <div className="login--links">
-                    <a href="www.google.com">Forgot password?</a>
-                    <p onClick={handleRegisterRedirect}>Register new user!</p>
+                    <button onClick={handleForgotPassword}>Forgot password?</button>
+                    <button onClick={handleRegisterRedirect}>Register new user!</button>
                 </div>
                 {/* <button onClick={testToken}>Click me</button> */}
             </div>

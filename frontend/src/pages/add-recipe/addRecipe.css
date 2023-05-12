@@ -22,8 +22,7 @@
   box-shadow: 2px 2px 5px #99813d;
 }
 
-input[type="text"],
-select {
+.add-recipe-input-field {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;

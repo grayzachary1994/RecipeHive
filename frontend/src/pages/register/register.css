@@ -50,7 +50,7 @@
   
   }
 
-  .register--fields > input {
+  .register--inputs {
     font-family: 'Inter', sans-serif;
     border-radius: 5px;
     border: none;
@@ -78,4 +78,20 @@
     justify-content: space-around;
     font-family: 'Inter', sans-serif;
     padding-top: 10px;
+  }
+
+  .register--links > button {
+    margin: 0;
+    padding: 5px;
+    cursor: pointer;
+    color: black;
+    font-size: .9em;
+    background-image: linear-gradient(15deg, #ffea31 0%, #e94439 100%);
+    border: none;
+    border-radius: 5px;
+    box-shadow: 2px 2px 4px black;
+  }
+
+  .register--links > button:hover {
+    background-image: linear-gradient(15deg, #e94439 0%, #ffea31 100%);
   }

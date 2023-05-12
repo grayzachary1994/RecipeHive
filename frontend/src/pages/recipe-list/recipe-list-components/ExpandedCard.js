@@ -1,7 +1,5 @@
 import React from "react";
 
-import clock from "../../images/clock.png";
-
 export default function ExpandedCard(props) {
 
   const listedIngredients = (ingredient, number) => (
