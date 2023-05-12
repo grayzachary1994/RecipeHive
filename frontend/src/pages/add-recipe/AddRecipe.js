@@ -32,7 +32,7 @@ export default function AddRecipe() {
     const { value } = event.target;
       setRecipeName(value)
   }
-
+  
   function handleDescriptionChange(event) {
     const { value } = event.target;
       setDescription(value)
@@ -91,6 +91,7 @@ export default function AddRecipe() {
         <div className="add-recipe-input">
           <label className="recipe-name">Name: </label>
           <input 
+            className="add-recipe-input-field"
             type="text"
             name="recipeName"
             onChange={handleRecipeNameChange}
@@ -100,6 +101,7 @@ export default function AddRecipe() {
         <div className="add-recipe-input">
           <label className="recipe-description">Description: </label>
           <input 
+            className="add-recipe-input-field"
             type="text"
             name="description"
             onChange={handleDescriptionChange}
@@ -110,6 +112,7 @@ export default function AddRecipe() {
           <label className="recipe-ingredients">Ingredients: </label>
           <div className="multipleIngredient-container">
             <input 
+              className="add-recipe-input-field"
               type="text" 
               name="ingredient"
               onChange={handleIngredient}
@@ -136,6 +139,7 @@ export default function AddRecipe() {
           <label className="recipe-steps">Steps: </label>
           <div className="multipleSteps-container">
             <input 
+              className="add-recipe-input-field"
               type="text" 
               name="step"
               onChange={handleStep}
@@ -161,6 +165,7 @@ export default function AddRecipe() {
         <div className="add-recipe-input">
           <label className="recipe-time">Time to Cook: </label>
           <input 
+            className="add-recipe-input-field"
             type="text" 
             name="time"
             onChange={handleTimeChange}

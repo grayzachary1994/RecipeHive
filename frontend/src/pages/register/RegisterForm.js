@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-// import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import './register.css';
 import userService from "../../services/UserService";
 const REGISTER_URL = 'api/auth/signup';
 
 export default function RegisterForm() {
 
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const [isMatching, setIsMatching] = useState(true);
     const [verify, setVerify] = useState('');
@@ -15,6 +15,14 @@ export default function RegisterForm() {
         email: '',
         password: '',
     })
+
+    function handleLoginRedirect() {
+        navigate('/login')
+    }
+
+    function handleForgotPassword(){
+        // navigate('http://www.google.com')
+    }
 
     function handleFormChange(event) {
         const {name, value} = event.target
@@ -46,14 +54,18 @@ export default function RegisterForm() {
                 })
             } else {
                 event.preventDefault();
-                await userService.post(REGISTER_URL, formData);
-                setFormData({
-                    username: '',
-                    email: '',
-                    password: ''
-                })
-                setVerify('');
-                // navigate('/');
+                const response = await userService.post(REGISTER_URL, formData);
+                console.log(response.status)
+                if (response.status === 200) {
+                    navigate('/login')
+                } else {
+                    setFormData({
+                        username: '',
+                        email: '',
+                        password: ''
+                    })
+                    setVerify('');
+                }
             }
         }
         catch(e) {
@@ -67,6 +79,7 @@ export default function RegisterForm() {
                 <h1 className="register--title">Register</h1>
                 <div className="register--fields">
                     <input 
+                        className="register--inputs"
                         type="text"
                         name="username"
                         placeholder="Username"
@@ -74,6 +87,7 @@ export default function RegisterForm() {
                         value={formData.username} 
                     />
                     <input 
+                        className="register--inputs"
                         type="email"
                         name="email"
                         placeholder="Email"
@@ -81,6 +95,7 @@ export default function RegisterForm() {
                         value={formData.email} 
                     />
                     <input 
+                        className="register--inputs"
                         type="password"
                         name="password"
                         placeholder="Password"
@@ -88,6 +103,7 @@ export default function RegisterForm() {
                         value={formData.password} 
                     />
                     <input 
+                        className="register--inputs"
                         type="password"
                         name="verify"
                         placeholder="Confirm Password"
@@ -98,8 +114,8 @@ export default function RegisterForm() {
                     <button onClick={handleFormSubmit} className="registerButton">Register</button>
                 </div>
                 <div className="register--links">
-                    <a href="www.google.com">Forgot password?</a>
-                    <a href='/login'>Already a user? Log in!</a>
+                    <button onClick={handleForgotPassword}>Forgot password?</button>
+                    <button onClick={handleLoginRedirect}>Already a user? Log in!</button>
                 </div>
             </div>
         </div>

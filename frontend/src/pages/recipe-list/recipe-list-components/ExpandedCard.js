@@ -1,15 +1,13 @@
 import React from "react";
 
-import clock from "../../images/clock.png";
-
 export default function ExpandedCard(props) {
 
   const listedIngredients = (ingredient, number) => (
     <li key={number}>{ingredient}</li>
   );
 
-  const listedDirections = (direction, number) => (
-    <li key={number}>{direction}</li>
+  const listedDirections = (step, number) => (
+    <li key={number}>{step}</li>
   );
 
   return (
@@ -28,9 +26,9 @@ export default function ExpandedCard(props) {
         </ul>
       </div>
       <div className="expanded-directions">
-        <h3>Directions:</h3>
+        <h3>Steps:</h3>
         <ol>
-          {props.directions.map(listedDirections)}
+          {props.steps.map(listedDirections)}
         </ol>
       </div>
       <div className="expanded-time">
