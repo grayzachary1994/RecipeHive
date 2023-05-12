@@ -3,6 +3,7 @@ package liftoff.recipehive.models.dto;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
 import java.util.Set;
 
 public class SignupRequest {
@@ -15,7 +16,9 @@ public class SignupRequest {
     @Email
     private String email;
 
-    private Set<String> role;
+    private Set<String> role = new HashSet<>(){{
+        add("USER_ROLE");
+    }};
 
     @NotBlank
     @Size(min = 6, max = 40)
