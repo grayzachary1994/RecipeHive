@@ -78,10 +78,10 @@ export default function AddRecipe() {
     setFormData({
       name: recipeName,
       description: description,
-      // ingredients: ingredientArr,
-      // steps: stepArr,
-      ingredients: ['test'],
-      steps: ['test'],
+      ingredients: ingredientArr,
+      steps: stepArr,
+      // ingredients: ['test'],
+      // steps: ['test'],
       time: time
     })
   }
