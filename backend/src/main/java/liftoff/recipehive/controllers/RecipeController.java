@@ -30,7 +30,7 @@ public class RecipeController {
 
     }
 
-    @GetMapping
+    @GetMapping("recipe-list")
     public ResponseEntity<List<Recipe>> displayCookbook() {
         List<Recipe> recipes = recipeRepository.findAll();
         return ResponseEntity.ok(recipes);

@@ -42,7 +42,7 @@ export default function Login() {
         try {
             const response = await userService.post(LOGIN_URL, formData,
                 {
-                    headers: { 'Content-Type': 'application/json'}
+                    headers: {'Content-Type': 'application/json'}
                 });
                 const accessToken = response.data.accessToken;
                 const roles = response.data.roles;

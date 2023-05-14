@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import "./addRecipe.css";
+import UserService from "../../services/UserService";
+import useAuth from "../../auth/useAuth";
+const RECIPE_URL = '/api/recipe/add-recipe';
 
 let nextId = 0;
 
 export default function AddRecipe() {
+  const { auth } = useAuth();
+
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
 
@@ -16,7 +21,7 @@ export default function AddRecipe() {
   const [time, setTime] = useState('');
 
   const [formData, setFormData] = useState({
-    recipeName: '',
+    name: '',
     description: '',
     ingredients: [],
     steps: [],
@@ -71,17 +76,31 @@ export default function AddRecipe() {
 
   function handleFormData(event) {
     setFormData({
-      recipeName: recipeName,
+      name: recipeName,
       description: description,
-      ingredients: ingredientArr,
-      steps: stepArr,
+      // ingredients: ingredientArr,
+      // steps: stepArr,
+      ingredients: ['test'],
+      steps: ['test'],
       time: time
     })
   }
 
-  function handleFormSubmit(event) {
+  async function handleFormSubmit(event) {
     event.preventDefault();
     console.log(formData, 'You submitted!')
+    try {
+      const response = await UserService.post(RECIPE_URL, formData,
+        {
+          headers: {
+            'Authorization': `Bearer ${auth.accessToken}`,
+            "Content-Type": 'application/json'
+          }
+        });
+        console.log(response);
+    } catch(err) {
+      console.log(err, "Recipe not added")
+    }
   }
 
   return (
