@@ -69,18 +69,18 @@ public class Recipe {
     }
 
     public List<String> getIngredients() {
-        return Arrays.asList(ingredients.split("`"));
+        return Arrays.asList(ingredients.split("!#!"));
     }
 
     public void setIngredients(List<String> ingredients) {
-        this.ingredients = String.join("`", ingredients);
+        this.ingredients = String.join("!#!", ingredients);
     }
 
     public List<String> getSteps() {
-        return Arrays.asList(steps.split("`"));
+        return Arrays.asList(steps.split("!#!"));
     }
 
     public void setSteps(List<String> steps) {
-        this.steps = String.join("`", steps);
+        this.steps = String.join("!#!", steps);
     }
 }

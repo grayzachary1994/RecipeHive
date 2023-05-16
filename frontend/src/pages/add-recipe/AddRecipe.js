@@ -75,11 +75,19 @@ export default function AddRecipe() {
   }
 
   function handleFormData(event) {
+    let arrOfIngredients = [];
+    let arrOfSteps = [];
+    ingredientArr.map(ingredient => {
+      return arrOfIngredients.push(`${ingredient.name}`)
+    })
+    stepArr.map(step => {
+      return arrOfSteps.push(`${step.name}`)
+    })
     setFormData({
       name: recipeName,
       description: description,
-      ingredients: ingredientArr,
-      steps: stepArr,
+      ingredients: arrOfIngredients,
+      steps: arrOfSteps,
       // ingredients: ['test'],
       // steps: ['test'],
       time: time
