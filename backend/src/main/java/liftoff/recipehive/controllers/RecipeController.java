@@ -50,20 +50,12 @@ public class RecipeController {
     }
 
     public String retrieveUsernameFromHeader(HttpServletRequest httpServletRequest) {
-        System.out.println("Starting retrieval");
         String sessionUserName = httpServletRequest.getHeader("Authorization");
-        System.out.println(sessionUserName + "-1");
         if (StringUtils.hasText(sessionUserName) && sessionUserName.startsWith("Bearer ")) {
             String longUserName = sessionUserName;
             sessionUserName = longUserName.substring(7, longUserName.length());
         }
-        System.out.println(sessionUserName + "-2");
-
         String decodedSessionUserName = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(sessionUserName).getBody().getSubject();
-
-        System.out.println(decodedSessionUserName + "-3");
-
-        System.out.println("Executed retrieval");
         return decodedSessionUserName;
     }
 }
