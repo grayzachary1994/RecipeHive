@@ -3,6 +3,7 @@ import liftoff.recipehive.models.Recipe;
 import liftoff.recipehive.models.dto.MessageResponse;
 import liftoff.recipehive.repositories.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
@@ -48,6 +49,27 @@ public class RecipeController {
         } else {
             return ResponseEntity.badRequest().body(new MessageResponse("Recipe does not exist!"));
         }
+    }
+
+    @PutMapping("edit/{recipeId}")
+    public ResponseEntity<?> updateRecipe(@PathVariable int recipeId, @RequestBody Recipe recipeDetails) {
+        Optional optRecipe = recipeRepository.findById(recipeId);
+        if (optRecipe.isPresent()) {
+            Recipe updateRecipe = (Recipe) optRecipe.get();
+
+            updateRecipe.setName(recipeDetails.getName());
+            updateRecipe.setDescription(recipeDetails.getDescription());
+            updateRecipe.setIngredients(recipeDetails.getIngredients());
+            updateRecipe.setSteps(recipeDetails.getSteps());
+            updateRecipe.setTime(recipeDetails.getTime());
+
+            recipeRepository.save(updateRecipe);
+
+            return ResponseEntity.ok(updateRecipe);
+        } else {
+            return ResponseEntity.badRequest().body(new MessageResponse("Unable to update recipe."));
+        }
+
     }
 }
 

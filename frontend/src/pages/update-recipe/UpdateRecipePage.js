@@ -15,6 +15,7 @@ export default function UpdateRecipePage() {
     const { id } = useParams();
     const { auth } = useAuth();
 
+    const [recipeId, setRecipeId] = useState(null);
     const [recipeName, setRecipeName] = useState("");
     const [description, setDescription] = useState("");
     const [ingredientName, setIngredientName] = useState('');
@@ -76,6 +77,8 @@ export default function UpdateRecipePage() {
                     }
                 })
                 .then(response => {
+                    // console.log(response.data)
+                    setRecipeId(response.data.id)
                     setRecipeName(response.data.name)
                     setDescription(response.data.description)
                     setIngredientArr(response.data.ingredients.map(((ingredient, index) => ({id:index, name:ingredient}))))
@@ -93,6 +96,7 @@ export default function UpdateRecipePage() {
         <div>
             <Navbar />
             <UpdateRecipe 
+                recipeId={recipeId}
                 recipeName={recipeName}
                 description={description}
                 ingredientArr={ingredientArr}

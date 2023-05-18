@@ -3,19 +3,13 @@ import React, { useEffect, useState } from "react";
 import UserService from "../../services/UserService";
 import useAuth from "../../auth/useAuth";
 
-
+const UPDATE_RECIPE_URL = '/api/recipe/edit/'
 let nextId = 0;
 
-export default function UpdateRecipe({recipeName, description, ingredientArr, ingredientName, stepArr, stepStr, time, handleRecipeNameChange, handleDescriptionChange, handleIngredient, setIngredientArr, setStepArr, handleStep, handleTimeChange, addIngredient, addStep, image, fileInputChange, preview}) {
-  const { auth } = useAuth();
+export default function UpdateRecipe({recipeId, recipeName, description, ingredientArr, ingredientName, stepArr, stepStr, time, handleRecipeNameChange, handleDescriptionChange, handleIngredient, setIngredientArr, setStepArr, handleStep, handleTimeChange, addIngredient, addStep, image, fileInputChange, preview}) {
 
-  const [formData, setFormData] = useState({
-    name: '',
-    description: '',
-    ingredients: [],
-    steps: [],
-    time: ''
-  });
+  const { auth } = useAuth();
+  const id = recipeId
  
   async function handleFormSubmit(name, description, ingredients, steps, time) {
     const formattedIngredients =  ingredients.map((ingredient)=> ingredient.name);
@@ -28,18 +22,18 @@ export default function UpdateRecipe({recipeName, description, ingredientArr, in
       time
     }
     console.log(payload, 'You submitted!')
-    // try {
-    //   const response = await UserService.post(RECIPE_URL, formData,
-    //     {
-    //       headers: {
-    //         'Authorization': `Bearer ${auth.accessToken}`,
-    //         "Content-Type": 'application/json'
-    //       }
-    //     });
-    //     console.log(response);
-    // } catch(err) {
-    //   console.log(err, "Recipe not updated")
-    // }
+    try {
+      const response = await UserService.put(UPDATE_RECIPE_URL+id, payload,
+        {
+          headers: {
+            'Authorization': `Bearer ${auth.accessToken}`,
+            "Content-Type": 'application/json'
+          }
+        });
+        console.log(response);
+    } catch(err) {
+      console.log(err, "Recipe not updated")
+    }
   }
 
   return (
@@ -73,7 +67,7 @@ export default function UpdateRecipe({recipeName, description, ingredientArr, in
               className="edit-recipe-input-field"
               type="text"
               name="ingredient"
-              onChange={handleIngredient}
+              onChange={(e)=>handleIngredient(e.target.value)}
               value={ingredientName}
             />
           </div>
@@ -106,7 +100,7 @@ export default function UpdateRecipe({recipeName, description, ingredientArr, in
               className="edit-recipe-input-field"
               type="text"
               name="step"
-              onChange={handleStep}
+              onChange={(e)=>handleStep(e.target.value)}
               value={stepStr}
             />
           </div>
