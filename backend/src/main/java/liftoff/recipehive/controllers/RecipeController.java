@@ -1,12 +1,15 @@
 package liftoff.recipehive.controllers;
 import liftoff.recipehive.models.Recipe;
+import liftoff.recipehive.models.dto.MessageResponse;
 import liftoff.recipehive.repositories.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/recipe")
@@ -34,6 +37,17 @@ public class RecipeController {
     public ResponseEntity<List<Recipe>> displayCookbook() {
         List<Recipe> recipes = recipeRepository.findAll();
         return ResponseEntity.ok(recipes);
+    }
+
+    @GetMapping("edit/{recipeId}")
+    public ResponseEntity<?> editRecipe(@PathVariable int recipeId) {
+        Optional optRecipe = recipeRepository.findById(recipeId);
+        if (optRecipe.isPresent()) {
+            Recipe recipe = (Recipe) optRecipe.get();
+            return ResponseEntity.ok(recipe);
+        } else {
+            return ResponseEntity.badRequest().body(new MessageResponse("Recipe does not exist!"));
+        }
     }
 }
 
