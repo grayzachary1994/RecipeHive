@@ -7,7 +7,7 @@ export default function AddRecipePage() {
     return (
         <div>
             <Navbar />
-            <AddRecipe></AddRecipe>
+            <AddRecipe />
         </div>
     )
 }

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./addRecipe.css";
 import UserService from "../../services/UserService";
 import useAuth from "../../auth/useAuth";
@@ -8,6 +9,7 @@ let nextId = 0;
 
 export default function AddRecipe() {
   const { auth } = useAuth();
+  const navigate = useNavigate();
 
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
@@ -88,8 +90,6 @@ export default function AddRecipe() {
       description: description,
       ingredients: arrOfIngredients,
       steps: arrOfSteps,
-      // ingredients: ['test'],
-      // steps: ['test'],
       time: time
     })
   }
@@ -106,6 +106,7 @@ export default function AddRecipe() {
           }
         });
         console.log(response);
+        navigate('/');
     } catch(err) {
       console.log(err, "Recipe not added")
     }

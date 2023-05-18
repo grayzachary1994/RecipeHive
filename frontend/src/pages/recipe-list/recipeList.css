@@ -136,10 +136,41 @@
   max-width: 100%;
 }
 
-
 .expanded-directions li {
   margin-bottom: 1em;
   align-content: flex-end;
+}
+
+.expanded-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.edit-button {
+  font-family: "Inter", sans-serif;
+  text-decoration: none;
+  display: block;
+  margin: 10px auto;
+  padding: 10px 20px;
+  background-color: #f5a03b;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  background-color: #cd8732;
+}
+
+.delete-button {
+  background-color: #e94538 !important;
+}
+
+.delete-button:hover {
+  background-color: #a7322a !important;
 }
 
 @media (min-width: 768px) {

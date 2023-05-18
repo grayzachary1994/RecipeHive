@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function ExpandedCard(props) {
 
@@ -33,6 +34,10 @@ export default function ExpandedCard(props) {
       </div>
       <div className="expanded-time">
         <p>{props.time}</p>
+      </div>
+      <div className="expanded-buttons">
+        <Link className="edit-button" to={`/update/${props.id}`}>Edit</Link>
+        <button className="delete-button">Delete</button>
       </div>
     </div>
   );
