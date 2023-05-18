@@ -79,7 +79,7 @@ export default function UpdateRecipe({recipeId, recipeName, description, ingredi
           </button>
           <ul>
             {ingredientArr.map((ingredient) => (
-              <li key={ingredient.id}>
+              <li key={ingredient.name}>
                 {ingredient.name}
                 <div className="flex-button">
                   <button
@@ -112,7 +112,7 @@ export default function UpdateRecipe({recipeId, recipeName, description, ingredi
           </button>
           <ol>
             {stepArr.map((step) => (
-              <li key={step.id}>
+              <li key={step.name}>
                 {step.name}
                 <div className="flex-button">
                   <button
