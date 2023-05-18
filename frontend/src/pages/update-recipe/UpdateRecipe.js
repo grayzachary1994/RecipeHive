@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import UserService from "../../services/UserService";
 import useAuth from "../../auth/useAuth";
@@ -9,6 +10,7 @@ let nextId = 0;
 export default function UpdateRecipe({recipeId, recipeName, description, ingredientArr, ingredientName, stepArr, stepStr, time, handleRecipeNameChange, handleDescriptionChange, handleIngredient, setIngredientArr, setStepArr, handleStep, handleTimeChange, addIngredient, addStep, image, fileInputChange, preview}) {
 
   const { auth } = useAuth();
+  const navigate = useNavigate();
   const id = recipeId
  
   async function handleFormSubmit(name, description, ingredients, steps, time) {
@@ -31,6 +33,7 @@ export default function UpdateRecipe({recipeId, recipeName, description, ingredi
           }
         });
         console.log(response);
+        navigate('/');
     } catch(err) {
       console.log(err, "Recipe not updated")
     }

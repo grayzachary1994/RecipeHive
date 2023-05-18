@@ -77,7 +77,6 @@ export default function UpdateRecipePage() {
                     }
                 })
                 .then(response => {
-                    // console.log(response.data)
                     setRecipeId(response.data.id)
                     setRecipeName(response.data.name)
                     setDescription(response.data.description)
@@ -111,14 +110,12 @@ export default function UpdateRecipePage() {
                 setStepArr={setStepArr}
                 handleStep={handleStep}
                 handleTimeChange={handleTimeChange}
-
                 addIngredient={addIngredient}
                 addStep={addStep}
 
                 image={image}
                 fileInputChange={fileInputChange}
                 preview={preview}
-                // obj={{recipeName, }}
                 />
         </div>
     )
