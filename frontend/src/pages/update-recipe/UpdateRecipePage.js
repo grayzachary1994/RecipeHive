@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import UpdateRecipe from "./UpdateRecipe";
 import useAuth from "../../auth/useAuth";
 
+import './updateRecipe.css';
 import RecipeService from "../../services/RecipeService";
 const EDIT_RECIPE_URL = '/api/recipe/edit/'
 
@@ -12,7 +13,7 @@ export default function UpdateRecipePage() {
     const { id } = useParams();
     const { auth } = useAuth();
 
-    const [recipeData, setRecipeData] = useState({})
+    const [recipeData, setRecipeData] = useState()
     
     useEffect(() => {
         try {
