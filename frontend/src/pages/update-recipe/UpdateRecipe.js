@@ -6,27 +6,8 @@ import useAuth from "../../auth/useAuth";
 
 let nextId = 0;
 
-export default function UpdateRecipe(props) {
+export default function UpdateRecipe({recipeName, description, ingredientArr, ingredientName, stepArr, stepStr, time, handleRecipeNameChange, handleDescriptionChange, handleIngredient, setIngredientArr, setStepArr, handleStep, handleTimeChange, addIngredient, addStep, image, fileInputChange, preview}) {
   const { auth } = useAuth();
-
-  const [recipeCopy, setRecipeCopy] = useState({
-    name: "",
-    description: '',
-    ingredients: [],
-    steps: [],
-    time: ''
-  });
-
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [preview, setPreview] = useState(null);
-
-  const [recipeName, setRecipeName] = useState('');
-  const [description, setDescription] = useState('');
-  const [ingredientName, setIngredientName] = useState('');
-  const [ingredientArr, setIngredientArr] = useState([]);
-  const [stepStr, setStepStr] = useState('');
-  const [stepArr, setStepArr] = useState([]);
-  const [time, setTime] = useState('');
 
   const [formData, setFormData] = useState({
     name: '',
@@ -35,53 +16,32 @@ export default function UpdateRecipe(props) {
     steps: [],
     time: ''
   });
-
-  useEffect(()=>{
-    setRecipeCopy(props);
-    setRecipeName(props.name);
-    setDescription(props.description);
-    setIngredientArr(props.ingredients)
-    setTime(props.time);
-  },[props])
-
-  function handleRecipeNameChange(event) {
-    setRecipeName(event.target.value);
+ 
+  async function handleFormSubmit(name, description, ingredients, steps, time) {
+    const formattedIngredients =  ingredients.map((ingredient)=> ingredient.name);
+    const formattedSteps = steps.map((step)=> step.name)
+    const payload = {
+      name,
+      description,
+      ingredients: formattedIngredients,
+      steps: formattedSteps,
+      time
+    }
+    console.log(payload, 'You submitted!')
+    // try {
+    //   const response = await UserService.post(RECIPE_URL, formData,
+    //     {
+    //       headers: {
+    //         'Authorization': `Bearer ${auth.accessToken}`,
+    //         "Content-Type": 'application/json'
+    //       }
+    //     });
+    //     console.log(response);
+    // } catch(err) {
+    //   console.log(err, "Recipe not updated")
+    // }
   }
 
-  function handleDescriptionChange(event) {
-      setDescription(event.target.value)
-  }
-
-  function handleTimeChange(event) {
-      setTime(event.target.value)
-  }
-
-  function handleIngredient(event) {
-    setIngredientName(event.target.value)
-  }
-
-  function addIngredient() {
-    setIngredientArr([
-      ...ingredientArr,
-      {id: nextId++, name: ingredientName}
-    ]);
-    setIngredientName('');
-  }
-
-  function handleStep(event) {
-    const { value } = event.target;
-    setStepStr(value)
-  }
-
-  function addStep() {
-    setStepArr([
-      ...stepArr,
-      {id: nextId++, name: stepStr}
-    ]);
-    setStepStr('');
-  }
-
-//   console.log(ingredientArr)
   return (
     <div className="recipe-page">
       <div className="edit-recipe">
@@ -92,7 +52,7 @@ export default function UpdateRecipe(props) {
             className="edit-recipe-input-field"
             type="text"
             name="recipeName"
-            onChange={handleRecipeNameChange}
+            onChange={(e)=>handleRecipeNameChange(e.target.value)}
             value={recipeName}
           />
         </div>
@@ -102,7 +62,7 @@ export default function UpdateRecipe(props) {
             className="edit-recipe-input-field"
             type="text"
             name="description"
-            onChange={handleDescriptionChange}
+            onChange={(e)=>handleDescriptionChange(e.target.value)}
             value={description}
           />
         </div>
@@ -117,11 +77,11 @@ export default function UpdateRecipe(props) {
               value={ingredientName}
             />
           </div>
-          <button className="extraInput" onClick={addIngredient}>
+          <button className="extraInput" onClick={()=> addIngredient()}>
             Add Ingredient
           </button>
           <ul>
-            {/* {ingredientArr.map((ingredient) => (
+            {ingredientArr.map((ingredient) => (
               <li key={ingredient.id}>
                 {ingredient.name}
                 <div className="flex-button">
@@ -136,7 +96,7 @@ export default function UpdateRecipe(props) {
                   </button>
                 </div>
               </li>
-            ))} */}
+            ))}
           </ul>
         </div>
         <div className="edit-recipe-input">
@@ -150,11 +110,11 @@ export default function UpdateRecipe(props) {
               value={stepStr}
             />
           </div>
-          {/* <button className="extraInput" onClick={addStep}>
+          <button className="extraInput" onClick={()=>addStep()}>
             Add Step
-          </button> */}
+          </button>
           <ol>
-            {/* {stepArr.map((step) => (
+            {stepArr.map((step) => (
               <li key={step.id}>
                 {step.name}
                 <div className="flex-button">
@@ -167,7 +127,7 @@ export default function UpdateRecipe(props) {
                   </button>
                 </div>
               </li>
-            ))} */}
+            ))}
           </ol>
         </div>
         <div className="edit-recipe-input">
@@ -176,20 +136,23 @@ export default function UpdateRecipe(props) {
             className="edit-recipe-input-field"
             type="text"
             name="time"
-            onChange={handleTimeChange}
+            onChange={(e)=>handleTimeChange(e.target.value)}
             value={time}
           />
         </div>
         <div className="edit-recipe-input">
           <label className="recipe-image">Upload an Image: </label>
-          {/* <input type="file" onChange={fileInputChange}></input> */}
-          {/* {preview && (
-            <img className="preview-image" src={preview} alt="Preview" />
-          )} */}
+          <input type="file" onChange={fileInputChange}></input>
+          {image && (
+            <img className="preview-image" src={image} alt="chicken" />
+          )}
+          {preview && (
+            <img className="preview-image" src={preview} alt="chicken" />
+          )}
         </div>
-        {/* <button onMouseEnter={handleFormData} onClick={handleFormSubmit}>
+        <button onClick={() => handleFormSubmit(recipeName, description, ingredientArr, stepArr, time)}>
           Add Recipe to Your Hive!
-        </button> */}
+        </button>
       </div>
     </div>
   );

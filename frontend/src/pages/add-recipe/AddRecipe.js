@@ -88,8 +88,6 @@ export default function AddRecipe() {
       description: description,
       ingredients: arrOfIngredients,
       steps: arrOfSteps,
-      // ingredients: ['test'],
-      // steps: ['test'],
       time: time
     })
   }
