@@ -55,6 +55,7 @@ public class RecipeController {
         }
         String decodedSessionUserName = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(sessionUserName).getBody().getSubject();
         return decodedSessionUserName;
+    }
 
     @GetMapping("edit/{recipeId}")
     public ResponseEntity<?> editRecipe(@PathVariable int recipeId) {
