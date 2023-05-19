@@ -44,8 +44,9 @@ public class RecipeController {
     }
 
     @GetMapping("recipe-list")
-    public ResponseEntity<List<Recipe>> displayCookbook() {
-        List<Recipe> recipes = recipeRepository.findAll();
+    public ResponseEntity<List<Recipe>> displayCookbook(HttpServletRequest httpServletRequest) {
+        String listUserName = retrieveUsernameFromHeader(httpServletRequest);
+        List<Recipe> recipes = recipeRepository.findByRecipeUserName(listUserName);
         return ResponseEntity.ok(recipes);
     }
 
