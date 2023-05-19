@@ -147,7 +147,7 @@ export default function UpdateRecipe({recipeId, recipeName, description, ingredi
           )}
         </div>
         <button onClick={() => handleFormSubmit(recipeName, description, ingredientArr, stepArr, time)}>
-          Add Recipe to Your Hive!
+          Submit Edits!
         </button>
       </div>
     </div>

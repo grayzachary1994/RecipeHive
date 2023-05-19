@@ -22,14 +22,6 @@ export default function AddRecipe() {
   const [description, setDescription] = useState('');
   const [time, setTime] = useState('');
 
-  const [formData, setFormData] = useState({
-    name: '',
-    description: '',
-    ingredients: [],
-    steps: [],
-    time: ''
-  });
-  
   const fileInputChange = (selectedImage) => {
     setSelectedFile(selectedImage.target.files[0]);
     setPreview(URL.createObjectURL(selectedImage.target.files[0]));
@@ -76,29 +68,20 @@ export default function AddRecipe() {
     setStepStr('');
   }
 
-  function handleFormData(event) {
-    let arrOfIngredients = [];
-    let arrOfSteps = [];
-    ingredientArr.map(ingredient => {
-      return arrOfIngredients.push(`${ingredient.name}`)
-    })
-    stepArr.map(step => {
-      return arrOfSteps.push(`${step.name}`)
-    })
-    setFormData({
-      name: recipeName,
-      description: description,
-      ingredients: arrOfIngredients,
-      steps: arrOfSteps,
-      time: time
-    })
-  }
-
   async function handleFormSubmit(event) {
     event.preventDefault();
-    console.log(formData, 'You submitted!')
+    const formattedIngredients = ingredientArr.map(ingredient => ingredient.name);
+    const formattedSteps = stepArr.map(step => step.name);
+    const payload = {
+      name: recipeName,
+      description: description,
+      ingredients: formattedIngredients,
+      steps: formattedSteps,
+      time: time
+    }
+    console.log(payload, 'You submitted!')
     try {
-      const response = await UserService.post(RECIPE_URL, formData,
+      const response = await UserService.post(RECIPE_URL, payload,
         {
           headers: {
             'Authorization': `Bearer ${auth.accessToken}`,
@@ -206,7 +189,6 @@ export default function AddRecipe() {
           {preview && <img className="preview-image"src={preview} alt="Preview"/>}
         </div>
         <button 
-        onMouseEnter={handleFormData}
         onClick={handleFormSubmit}>Add Recipe to Your Hive!</button>
       </div>
     </div>
