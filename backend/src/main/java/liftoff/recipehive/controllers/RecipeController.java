@@ -25,12 +25,6 @@ public class RecipeController {
     @Value("${bezkoder.app.jwtSecret}")
     private String jwtSecret;
 
-
-    //    @GetMapping
-//    public String displayAddRecipeForm(@RequestBody ) {
-//
-//        return "add-recipe";
-//    }
     @PostMapping("add-recipe")
     public String processAddRecipeForm(@RequestBody @Valid Recipe newRecipe, Errors errors, HttpServletRequest httpServletRequest) {
         if (errors.hasErrors()) {
