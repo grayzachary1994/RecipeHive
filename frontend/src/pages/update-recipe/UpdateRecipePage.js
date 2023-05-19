@@ -89,7 +89,7 @@ export default function UpdateRecipePage() {
         } catch(err) {
             console.log('Recipe not found', err)
         }
-    }, [])
+    }, [auth.accessToken, id])
 
     return (
         <div>

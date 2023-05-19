@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import UserService from "../../services/UserService";
 import useAuth from "../../auth/useAuth";
 
 const UPDATE_RECIPE_URL = '/api/recipe/edit/'
-let nextId = 0;
 
 export default function UpdateRecipe({recipeId, recipeName, description, ingredientArr, ingredientName, stepArr, stepStr, time, handleRecipeNameChange, handleDescriptionChange, handleIngredient, setIngredientArr, setStepArr, handleStep, handleTimeChange, addIngredient, addStep, image, fileInputChange, preview}) {
 
