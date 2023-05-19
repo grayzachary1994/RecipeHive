@@ -28,12 +28,6 @@ public class RecipeController {
     @Value("${bezkoder.app.jwtSecret}")
     private String jwtSecret;
 
-
-    //    @GetMapping
-//    public String displayAddRecipeForm(@RequestBody ) {
-//
-//        return "add-recipe";
-//    }
     @PostMapping("add-recipe")
     public String processAddRecipeForm(@RequestBody @Valid Recipe newRecipe, Errors errors, HttpServletRequest httpServletRequest) {
         if (errors.hasErrors()) {
@@ -47,8 +41,9 @@ public class RecipeController {
     }
 
     @GetMapping("recipe-list")
-    public ResponseEntity<List<Recipe>> displayCookbook() {
-        List<Recipe> recipes = recipeRepository.findAll();
+    public ResponseEntity<List<Recipe>> displayCookbook(HttpServletRequest httpServletRequest) {
+        String listUserName = retrieveUsernameFromHeader(httpServletRequest);
+        List<Recipe> recipes = recipeRepository.findByRecipeUserName(listUserName);
         return ResponseEntity.ok(recipes);
     }
 
