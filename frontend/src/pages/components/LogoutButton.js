@@ -1,6 +1,7 @@
+import React from "react";
 import useAuth from "../../auth/useAuth";
 
-function LogoutButton() {
+export default function LogoutButton() {
     const { setAuth } = useAuth();
 
     function handleClick() {
@@ -8,9 +9,7 @@ function LogoutButton() {
     }
     return (
         <div className="logout-button">
-            <button onClick={handleClick}>Log Out</button>
+            <p onClick={handleClick}>Log Out</p>
         </div>
     );
 }
-
-export default LogoutButton;
