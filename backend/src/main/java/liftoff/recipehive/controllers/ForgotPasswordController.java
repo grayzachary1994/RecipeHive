@@ -3,6 +3,7 @@ import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.servlet.http.HttpServletRequest;
 import liftoff.recipehive.models.User;
+import liftoff.recipehive.models.dto.ForgotPasswordDTO;
 import liftoff.recipehive.security.services.UserServices;
 import liftoff.recipehive.security.services.Utility;
 import net.bytebuddy.utility.RandomString;
@@ -11,14 +12,14 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.io.UnsupportedEncodingException;
 
 @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8080"}, maxAge = 3600)
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api/recovery")
 public class ForgotPasswordController {
     @Autowired
     private JavaMailSender mailSender;
@@ -32,17 +33,13 @@ public class ForgotPasswordController {
 //    }
 
     @PostMapping("/forgot_password")
-    public ResponseEntity<?> processForgotPassword(HttpServletRequest request) {
-        String email = request.getParameter("email");
+    public ResponseEntity<?> processForgotPassword(@Valid @RequestBody ForgotPasswordDTO forgotPasswordDTO, HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
         String token = RandomString.make(30);
+        String email = forgotPasswordDTO.getEmail();
 
-        try {
-            userService.updateResetPasswordToken(token, email);
-            String resetPasswordLink = Utility.getSiteURL(request) + "/reset_password?token=" + token;
-            sendEmail(email, resetPasswordLink);
-        }  catch (UnsupportedEncodingException | MessagingException e) {
-            ResponseEntity.badRequest().body("Unsupported encoding exception.");
-        }
+        userService.updateResetPasswordToken(token, email);
+        String resetPasswordLink = Utility.getSiteURL(request) + "api/recovery/reset_password?token=" + token;
+        sendEmail(email, resetPasswordLink);
 
         return ResponseEntity.ok("Password reset request received.");
     }
