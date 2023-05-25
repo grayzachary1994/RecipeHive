@@ -4,6 +4,7 @@ import jakarta.mail.internet.MimeMessage;
 import jakarta.servlet.http.HttpServletRequest;
 import liftoff.recipehive.models.User;
 import liftoff.recipehive.models.dto.ForgotPasswordDTO;
+import liftoff.recipehive.models.dto.ResetPasswordDTO;
 import liftoff.recipehive.security.services.UserServices;
 import liftoff.recipehive.security.services.Utility;
 import net.bytebuddy.utility.RandomString;
@@ -27,18 +28,13 @@ public class ForgotPasswordController {
     @Autowired
     private UserServices userService;
 
-//    @GetMapping("/forgot_password")
-//    public String showForgotPasswordForm() {
-//
-//    }
-
     @PostMapping("/forgot_password")
     public ResponseEntity<?> processForgotPassword(@Valid @RequestBody ForgotPasswordDTO forgotPasswordDTO, HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
         String token = RandomString.make(30);
         String email = forgotPasswordDTO.getEmail();
 
         userService.updateResetPasswordToken(token, email);
-        String resetPasswordLink = Utility.getSiteURL(request) + "api/recovery/reset_password?token=" + token;
+        String resetPasswordLink = Utility.getSiteURL(request) + "/api/recovery/reset_password?token=" + token;
         sendEmail(email, resetPasswordLink);
 
         return ResponseEntity.ok("Password reset request received.");
@@ -56,9 +52,9 @@ public class ForgotPasswordController {
     }
 
     @PostMapping("/reset_password")
-    public ResponseEntity<?> processResetPassword(HttpServletRequest request) {
+    public ResponseEntity<?> processResetPassword(@Valid @RequestBody ResetPasswordDTO resetPasswordDTO, HttpServletRequest request) {
         String token = request.getParameter("token");
-        String password = request.getParameter("password");
+        String password = resetPasswordDTO.getPassword();
 
         User user = userService.getByResetPasswordToken(token);
 
