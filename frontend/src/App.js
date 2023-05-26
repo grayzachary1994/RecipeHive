@@ -8,6 +8,7 @@ import RecipeListPage from './pages/recipe-list/RecipeListPage';
 import AddRecipePage from './pages/add-recipe/AddRecipePage';
 import UpdateRecipePage from './pages/update-recipe/UpdateRecipePage';
 import Layout from './Layout.js';
+import ForgotPasswordPage from './pages/forgot-password/ForgotPasswordPage';
 
 function App() {
   return (
@@ -15,14 +16,15 @@ function App() {
       <Routes>
         <Route path="/" Component={Layout}>
           {/* public routes */}
-          <Route path='login' Component={LoginPage}></Route>
-          <Route path='register' Component={RegisterPage}></Route>
+          <Route path='login' Component={LoginPage} />
+          <Route path='register' Component={RegisterPage} />
+          <Route path='forgot-password' Component={ForgotPasswordPage} />
 
           {/* private routes */}
           <Route element={<RequireAuth />}>
-            <Route path='/' Component={RecipeListPage}></Route>
-            <Route path='add' Component={AddRecipePage}></Route>
-            <Route path='update/:id' Component={UpdateRecipePage}></Route>
+            <Route path='/' Component={RecipeListPage} />
+            <Route path='add' Component={AddRecipePage} />
+            <Route path='update/:id' Component={UpdateRecipePage} />
           </Route>
         </Route>
       </Routes>

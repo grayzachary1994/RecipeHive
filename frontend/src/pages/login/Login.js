@@ -24,7 +24,7 @@ export default function Login() {
     }
 
     function handleForgotPassword() {
-        
+        navigate('/forgot-password')
     }
 
     function handleFormChange(event){

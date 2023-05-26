@@ -34,7 +34,7 @@ public class ForgotPasswordController {
         String email = forgotPasswordDTO.getEmail();
 
         userService.updateResetPasswordToken(token, email);
-        String resetPasswordLink = Utility.getSiteURL(request) + "/api/recovery/reset_password?token=" + token;
+        String resetPasswordLink = "http://localhost:3000/reset_password?token=" + token;
         sendEmail(email, resetPasswordLink);
 
         return ResponseEntity.ok("Password reset request received.");
