@@ -10,6 +10,9 @@ export default function ResetPassword() {
     const [isMatching, setIsMatching] = useState(true);
     const [errors, setErrors] = useState('');
 
+    console.log(window.location.search)
+    const token = (window.location.search).slice(7);
+
     function handlePassword(event) {
         // const {value} = event.target;
         setPassword(event.target.value)
@@ -68,6 +71,10 @@ export default function ResetPassword() {
                     value={verify}
                 />
                 <button onClick={handleSubmit}>Reset Password</button>
+                <input type="hidden" 
+                    value={token}
+                    name="token"
+                />
             </div>
         </div>
     )

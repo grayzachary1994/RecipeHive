@@ -11,7 +11,7 @@ export default function ForgotPassword() {
         const {value} = event.target;
         setEmail(prevEmail => value)
     }
-    console.log(email)
+    
     async function handleSubmit(event) {
         event.preventDefault();
         const payload = {
