@@ -6,7 +6,6 @@ import liftoff.recipehive.models.User;
 import liftoff.recipehive.models.dto.ForgotPasswordDTO;
 import liftoff.recipehive.models.dto.ResetPasswordDTO;
 import liftoff.recipehive.security.services.UserServices;
-import liftoff.recipehive.security.services.Utility;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -30,12 +29,12 @@ public class ForgotPasswordController {
 
     @PostMapping("/forgot_password")
     public ResponseEntity<?> processForgotPassword(@Valid @RequestBody ForgotPasswordDTO forgotPasswordDTO, HttpServletRequest request) throws MessagingException, UnsupportedEncodingException {
-        String token = RandomString.make(30);
+        String token = RandomString.make(18);
         String email = forgotPasswordDTO.getEmail();
 
         userService.updateResetPasswordToken(token, email);
-        String resetPasswordLink = Utility.getSiteURL(request) + "/api/recovery/reset_password?token=" + token;
-        sendEmail(email, resetPasswordLink);
+//        String resetPasswordLink = Utility.getSiteURL(request) + "/api/recovery/reset_password?token=" + token;
+        sendEmail(email, token);
 
         return ResponseEntity.ok("Password reset request received.");
     }
@@ -53,7 +52,7 @@ public class ForgotPasswordController {
 
     @PostMapping("/reset_password")
     public ResponseEntity<?> processResetPassword(@Valid @RequestBody ResetPasswordDTO resetPasswordDTO, HttpServletRequest request) {
-        String token = request.getParameter("token");
+        String token = resetPasswordDTO.getToken();
         String password = resetPasswordDTO.getPassword();
 
         User user = userService.getByResetPasswordToken(token);
@@ -68,7 +67,7 @@ public class ForgotPasswordController {
 
     }
 
-    public void sendEmail(String recipientEmail, String link)
+    public void sendEmail(String recipientEmail, String token)
             throws MessagingException, UnsupportedEncodingException {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
@@ -80,8 +79,9 @@ public class ForgotPasswordController {
 
         String content = "<p>Hello,</p>"
                 + "<p>You have requested to reset your password.</p>"
-                + "<p>Click the link below to change your password:</p>"
-                + "<p><a href=\"" + link + "\">Change my password</a></p>"
+                + "<p>Click the link below and enter the temporary code to change your password:</p>"
+                + "<p><a href=\"http://localhost:3000/reset_password \">Change my password</a></p>"
+                + "<p>Temporary code: " + token + "</p>"
                 + "<br>"
                 + "<p>Ignore this email if you do remember your password, "
                 + "or you have not made the request.</p>";
