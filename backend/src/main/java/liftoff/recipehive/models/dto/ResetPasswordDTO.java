@@ -4,6 +4,8 @@ public class ResetPasswordDTO {
 
     private String password;
 
+    private String token;
+
     public String getPassword() {
         return password;
     }
@@ -11,4 +13,13 @@ public class ResetPasswordDTO {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
 }
