@@ -9,24 +9,40 @@ export default function ResetPassword() {
     const [verify, setVerify] = useState('');
     const [isMatching, setIsMatching] = useState(true);
     const [errors, setErrors] = useState('');
-
-    console.log(window.location.search)
-    const token = (window.location.search).slice(7);
+    const [token, setToken] = useState('');
+    const [isToken, setIstoken] = useState(false);
 
     function handlePassword(event) {
-        // const {value} = event.target;
         setPassword(event.target.value)
     }
 
     function handleVerify(event) {
-        // const {value} = event.target;
         setVerify(event.target.value)
+    }
+
+    function handleToken(event) {
+        setToken(event.target.value)
+    }
+
+    async function handleCheckCode(event) {
+        event.preventDefault();
+        const payload = {
+            token: token
+        };
+        console.log(payload)
+        try {
+            const response = await userService.get(RESET_PASS_URL, payload);
+            console.log(response)
+        } catch(err) {
+            console.log("Invalid Code")
+        }
     }
 
     async function handleSubmit(event) {
         event.preventDefault();
         const payload = {
-            password: password
+            password: password,
+            token: token
         };
         try {
             if (password && verify && password === verify){
@@ -54,7 +70,15 @@ export default function ResetPassword() {
     return (
         <div className="reset-password">
             <div className="reset-password-form">
-                {!errors && <p>Enter your new password</p>}
+                <p>Please enter the temporary code from your email.</p>
+                <input
+                    type="text"
+                    placeholder="Temporary Code"
+                    name="token"
+                    onChange={handleToken} 
+                    value={token}
+                />
+                {!errors && <p>Enter your new password:</p>}
                 {errors && <p className="errors">{errors}</p>}
                 <input 
                     type="password" 
@@ -71,10 +95,6 @@ export default function ResetPassword() {
                     value={verify}
                 />
                 <button onClick={handleSubmit}>Reset Password</button>
-                <input type="hidden" 
-                    value={token}
-                    name="token"
-                />
             </div>
         </div>
     )

@@ -39,17 +39,6 @@ public class ForgotPasswordController {
         return ResponseEntity.ok("Password reset request received.");
     }
 
-    @GetMapping("/reset_password")
-    public ResponseEntity<?> showResetPasswordForm(@Param(value = "token") String token) {
-        User user = userService.getByResetPasswordToken(token);
-
-        if (user == null) {
-            return ResponseEntity.badRequest().body("User does not exist.");
-        }
-
-        return ResponseEntity.ok("Change password functionality available.");
-    }
-
     @PostMapping("/reset_password")
     public ResponseEntity<?> processResetPassword(@Valid @RequestBody ResetPasswordDTO resetPasswordDTO, HttpServletRequest request) {
         String token = resetPasswordDTO.getToken();
