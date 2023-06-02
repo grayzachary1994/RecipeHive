@@ -18,7 +18,7 @@ export default function RecipeCard(props) {
 
   return (
     <div className="recipe-card">
-      <img src={props.image} alt={props.name} />
+      <img src={props.imageUrl} alt={props.name} />
       <div className="recipe-title">
         <h2>{props.name}</h2>
       </div>

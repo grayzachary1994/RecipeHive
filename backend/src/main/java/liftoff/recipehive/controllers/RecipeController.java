@@ -79,6 +79,7 @@ public class RecipeController {
             updateRecipe.setIngredients(recipeDetails.getIngredients());
             updateRecipe.setSteps(recipeDetails.getSteps());
             updateRecipe.setTime(recipeDetails.getTime());
+            updateRecipe.setImageUrl(recipeDetails.getImageUrl());
 
             recipeRepository.save(updateRecipe);
 
