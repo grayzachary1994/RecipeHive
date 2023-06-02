@@ -28,18 +28,20 @@ public class Recipe {
 
     private String recipeUserName;
 
+    public String imageUrl;
     public Recipe(){
 
     }
 
     public Recipe(String name, String description, String ingredients,
-                  String steps, String time, String recipeUserName) {
+                  String steps, String time, String imageUrl, String recipeUserName) {
         this();
         this.name = name;
         this.description = description;
         this.ingredients = ingredients;
         this.steps = steps;
         this.time = time;
+        this.imageUrl = imageUrl;
         this.recipeUserName = recipeUserName;
     }
 
@@ -89,6 +91,14 @@ public class Recipe {
 
     public void setSteps(List<String> steps) {
         this.steps = String.join("!#!", steps);
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getRecipeUserName() {

@@ -28,7 +28,7 @@ export default function ExpandedCard(props) {
 
   return (
     <div className="expanded-card">
-      <img className="expanded-image" src={props.image} alt={props.name} />
+      <img className="expanded-image" src={props.imageUrl} alt={props.name} />
       <div className="expanded-title">
         <h2>{props.title}</h2>
       </div>

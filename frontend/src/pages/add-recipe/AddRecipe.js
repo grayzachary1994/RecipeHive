@@ -3,95 +3,87 @@ import { useNavigate } from "react-router-dom";
 import "./addRecipe.css";
 import UserService from "../../services/UserService";
 import useAuth from "../../auth/useAuth";
-const RECIPE_URL = '/api/recipe/add-recipe';
+const RECIPE_URL = "/api/recipe/add-recipe";
 
 let nextId = 0;
 
 export default function AddRecipe() {
   const { auth } = useAuth();
   const navigate = useNavigate();
-
-  const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
-
-  const [ingredientName, setIngredientName] = useState('');
+  const [selectedImageUrl, setSelectedImageUrl] = useState(''); 
+  const [ingredientName, setIngredientName] = useState("");
   const [ingredientArr, setIngredientArr] = useState([]);
-  const [stepStr, setStepStr] = useState('');
+  const [stepStr, setStepStr] = useState("");
   const [stepArr, setStepArr] = useState([]);
-  const [recipeName, setRecipeName] = useState('');
-  const [description, setDescription] = useState('');
-  const [time, setTime] = useState('');
-
-  const fileInputChange = (selectedImage) => {
-    setSelectedFile(selectedImage.target.files[0]);
-    setPreview(URL.createObjectURL(selectedImage.target.files[0]));
-  };
+  const [recipeName, setRecipeName] = useState("");
+  const [description, setDescription] = useState("");
+  const [time, setTime] = useState("");
 
   function handleRecipeNameChange(event) {
     const { value } = event.target;
-      setRecipeName(value)
+    setRecipeName(value);
   }
-  
+
   function handleDescriptionChange(event) {
     const { value } = event.target;
-      setDescription(value)
+    setDescription(value);
   }
 
   function handleTimeChange(event) {
     const { value } = event.target;
-      setTime(value)
+    setTime(value);
   }
 
   function handleIngredient(event) {
     const { value } = event.target;
-    setIngredientName(value)
+    setIngredientName(value);
   }
-  
+
   function addIngredient() {
     setIngredientArr([
       ...ingredientArr,
-      {id: nextId++, name: ingredientName}
+      { id: nextId++, name: ingredientName },
     ]);
-    setIngredientName('');
+    setIngredientName("");
   }
 
   function handleStep(event) {
     const { value } = event.target;
-    setStepStr(value)
+    setStepStr(value);
   }
 
   function addStep() {
-    setStepArr([
-      ...stepArr,
-      {id: nextId++, name: stepStr}
-    ]);
-    setStepStr('');
+    setStepArr([...stepArr, { id: nextId++, name: stepStr }]);
+    setStepStr("");
   }
 
   async function handleFormSubmit(event) {
     event.preventDefault();
-    const formattedIngredients = ingredientArr.map(ingredient => ingredient.name);
-    const formattedSteps = stepArr.map(step => step.name);
+    const formattedIngredients = ingredientArr.map(
+      (ingredient) => ingredient.name
+    );
+    const formattedSteps = stepArr.map((step) => step.name);
     const payload = {
       name: recipeName,
       description: description,
       ingredients: formattedIngredients,
       steps: formattedSteps,
-      time: time
-    }
-    console.log(payload, 'You submitted!')
+      time: time,
+      imageUrl: selectedImageUrl,
+    };
+    console.log(payload, "You submitted!");
     try {
-      const response = await UserService.post(RECIPE_URL, payload,
-        {
-          headers: {
-            'Authorization': `Bearer ${auth.accessToken}`,
-            "Content-Type": 'application/json'
-          }
-        });
-        console.log(response);
-        navigate('/');
-    } catch(err) {
-      console.log(err, "Recipe not added")
+      const response = await UserService.post(RECIPE_URL, payload, {
+        headers: {
+          Authorization: `Bearer ${auth.accessToken}`,
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(response);
+      navigate("/");
+    } catch (err) {
+      console.log(err, "Recipe not added");
     }
   }
 
@@ -101,7 +93,7 @@ export default function AddRecipe() {
         <h1>Buzz in a Recipe!</h1>
         <div className="add-recipe-input">
           <label className="recipe-name">Name: </label>
-          <input 
+          <input
             className="add-recipe-input-field"
             type="text"
             name="recipeName"
@@ -111,7 +103,7 @@ export default function AddRecipe() {
         </div>
         <div className="add-recipe-input">
           <label className="recipe-description">Description: </label>
-          <input 
+          <input
             className="add-recipe-input-field"
             type="text"
             name="description"
@@ -122,26 +114,32 @@ export default function AddRecipe() {
         <div className="add-recipe-input">
           <label className="recipe-ingredients">Ingredients: </label>
           <div className="multipleIngredient-container">
-            <input 
+            <input
               className="add-recipe-input-field"
-              type="text" 
+              type="text"
               name="ingredient"
               onChange={handleIngredient}
               value={ingredientName}
             />
           </div>
-          <button className="extraInput" onClick={addIngredient}>Add Ingredient</button>
+          <button className="extraInput" onClick={addIngredient}>
+            Add Ingredient
+          </button>
           <ul>
             {ingredientArr.map((ingredient) => (
               <li key={ingredient.id}>
                 {ingredient.name}
                 <div className="flex-button">
-                  <button onClick={() => {
-                    setIngredientArr(
-                      ingredientArr.filter(a => a.id !== ingredient.id)
-                    )
-                  }}>X</button>
-                  </div>
+                  <button
+                    onClick={() => {
+                      setIngredientArr(
+                        ingredientArr.filter((a) => a.id !== ingredient.id)
+                      );
+                    }}
+                  >
+                    X
+                  </button>
+                </div>
               </li>
             ))}
           </ul>
@@ -149,47 +147,59 @@ export default function AddRecipe() {
         <div className="add-recipe-input">
           <label className="recipe-steps">Steps: </label>
           <div className="multipleSteps-container">
-            <input 
+            <input
               className="add-recipe-input-field"
-              type="text" 
+              type="text"
               name="step"
               onChange={handleStep}
               value={stepStr}
             />
           </div>
-          <button className="extraInput" onClick={addStep}>Add Step</button>
+          <button className="extraInput" onClick={addStep}>
+            Add Step
+          </button>
           <ol>
             {stepArr.map((step) => (
-                <li key={step.id}>
-                  {step.name}
-                  <div className="flex-button">
-                    <button onClick={() => {
-                      setStepArr(
-                        stepArr.filter(a => a.id !== step.id)
-                      )
-                    }}>X</button>
-                  </div>
-                </li>
+              <li key={step.id}>
+                {step.name}
+                <div className="flex-button">
+                  <button
+                    onClick={() => {
+                      setStepArr(stepArr.filter((a) => a.id !== step.id));
+                    }}
+                  >
+                    X
+                  </button>
+                </div>
+              </li>
             ))}
           </ol>
         </div>
         <div className="add-recipe-input">
           <label className="recipe-time">Time to Cook: </label>
-          <input 
+          <input
             className="add-recipe-input-field"
-            type="text" 
+            type="text"
             name="time"
             onChange={handleTimeChange}
             value={time}
           />
         </div>
         <div className="add-recipe-input">
-          <label className="recipe-image">Upload an Image: </label>
-          <input type="file" onChange={fileInputChange}></input>
-          {preview && <img className="preview-image"src={preview} alt="Preview"/>}
+          <label className="recipe-image">Upload an Image URL: </label>
+          <input
+            type="text"
+            onChange={(e) => {
+              setSelectedImageUrl(e.target.value);
+              setPreview(e.target.value);
+            }}
+            value={selectedImageUrl}
+          />
+          {preview && (
+            <img className="preview-image" src={preview} alt="Preview" />
+          )}
         </div>
-        <button 
-        onClick={handleFormSubmit}>Add Recipe to Your Hive!</button>
+        <button onClick={handleFormSubmit}>Add Recipe to Your Hive!</button>
       </div>
     </div>
   );

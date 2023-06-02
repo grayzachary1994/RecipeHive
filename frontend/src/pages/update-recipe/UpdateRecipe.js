@@ -6,13 +6,13 @@ import useAuth from "../../auth/useAuth";
 
 const UPDATE_RECIPE_URL = '/api/recipe/edit/'
 
-export default function UpdateRecipe({recipeId, recipeName, description, ingredientArr, ingredientName, stepArr, stepStr, time, handleRecipeNameChange, handleDescriptionChange, handleIngredient, setIngredientArr, setStepArr, handleStep, handleTimeChange, addIngredient, addStep, image, fileInputChange, preview}) {
+export default function UpdateRecipe({recipeId, recipeName, description, ingredientArr, ingredientName, stepArr, stepStr, time, handleRecipeNameChange, handleDescriptionChange, handleIngredient, setIngredientArr, setStepArr, handleStep, handleTimeChange, addIngredient, addStep, imageUrl, fileInputChange, preview}) {
 
   const { auth } = useAuth();
   const navigate = useNavigate();
   const id = recipeId
  
-  async function handleFormSubmit(name, description, ingredients, steps, time) {
+  async function handleFormSubmit(name, description, ingredients, steps, time, imageUrl) {
     const formattedIngredients =  ingredients.map((ingredient)=> ingredient.name);
     const formattedSteps = steps.map((step)=> step.name)
     const payload = {
@@ -20,7 +20,8 @@ export default function UpdateRecipe({recipeId, recipeName, description, ingredi
       description,
       ingredients: formattedIngredients,
       steps: formattedSteps,
-      time
+      time,
+      imageUrl
     }
     console.log(payload, 'You submitted!')
     try {
@@ -138,15 +139,12 @@ export default function UpdateRecipe({recipeId, recipeName, description, ingredi
         </div>
         <div className="edit-recipe-input">
           <label className="recipe-image">Upload an Image: </label>
-          <input type="file" onChange={fileInputChange}></input>
-          {image && (
-            <img className="preview-image" src={image} alt="chicken" />
-          )}
+          <input type="text" onChange={(e)=>fileInputChange(e.target.value)} value={imageUrl}></input>
           {preview && (
             <img className="preview-image" src={preview} alt="chicken" />
           )}
         </div>
-        <button onClick={() => handleFormSubmit(recipeName, description, ingredientArr, stepArr, time)}>
+        <button onClick={() => handleFormSubmit(recipeName, description, ingredientArr, stepArr, time, imageUrl)}>
           Submit Edits!
         </button>
       </div>

@@ -25,11 +25,12 @@ export default function UpdateRecipePage() {
     const [time, setTime] = useState('');
 
     const [preview, setPreview] = useState(null);
-    const [image, setImage] = useState('');
+    const [imageUrl, setImageUrl] = useState('');
 
     const fileInputChange = (selectedImage) => {
-        setPreview(URL.createObjectURL(selectedImage.target.files[0]));
-      };
+      setImageUrl(selectedImage);
+      setPreview(selectedImage);
+    };
 
     function handleRecipeNameChange(value) {
           setRecipeName(value)
@@ -83,8 +84,7 @@ export default function UpdateRecipePage() {
                     setIngredientArr(response.data.ingredients.map(((ingredient, index) => ({id:index, name:ingredient}))))
                     setStepArr(response.data.steps.map((step, index) => ({id:index, name:step})))
                     setTime(response.data.time)
-                    //pretend path response
-                    setImage('../../../images/big-oof.jpg')
+                    setImageUrl(response.data.imageUrl)
             })
         } catch(err) {
             console.log('Recipe not found', err)
@@ -113,7 +113,7 @@ export default function UpdateRecipePage() {
                 addIngredient={addIngredient}
                 addStep={addStep}
 
-                image={image}
+                imageUrl={imageUrl}
                 fileInputChange={fileInputChange}
                 preview={preview}
                 />
