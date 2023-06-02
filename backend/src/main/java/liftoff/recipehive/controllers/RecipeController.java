@@ -56,6 +56,17 @@ public class RecipeController {
         String decodedSessionUserName = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(sessionUserName).getBody().getSubject();
         return decodedSessionUserName;
     }
+    @GetMapping("delete/{recipeId}")
+    public ResponseEntity<?> deleteRecipe(@PathVariable int recipeId) {
+        Optional optionalRecipe = recipeRepository.findById(recipeId);
+        if(optionalRecipe.isPresent()) {
+            recipeRepository.deleteById(recipeId);
+            Recipe recipe = (Recipe) optionalRecipe.get();
+            return ResponseEntity.ok(recipe);
+        } else {
+            return ResponseEntity.badRequest().body(new MessageResponse("Recipe does not exist!"));
+        }
+    }
 
     @GetMapping("edit/{recipeId}")
     public ResponseEntity<?> editRecipe(@PathVariable int recipeId) {
