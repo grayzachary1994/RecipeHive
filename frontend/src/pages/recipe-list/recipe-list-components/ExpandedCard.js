@@ -1,7 +1,12 @@
 import React from "react";
 import { Link, useNavigate } from 'react-router-dom';
+import recipeService from '../../../services/RecipeService';
+
+const DELETE_RECIPE_URL = 'api/recipe/delete/';
 
 export default function ExpandedCard(props) {
+
+  const navigate = useNavigate();
 
   const listedIngredients = (ingredient, number) => (
     <li key={number}>{ingredient}</li>
@@ -10,6 +15,16 @@ export default function ExpandedCard(props) {
   const listedDirections = (step, number) => (
     <li key={number}>{step}</li>
   );
+
+  async function handleDelete() {
+    try {
+      const response = await recipeService.get(DELETE_RECIPE_URL+props.id);
+      console.log(response)
+      navigate('/')
+    } catch(err) {
+      console.log('Recipe not deleted.')
+    }
+  }
 
   return (
     <div className="expanded-card">
@@ -37,7 +52,7 @@ export default function ExpandedCard(props) {
       </div>
       <div className="expanded-buttons">
         <Link className="edit-button" to={`/update/${props.id}`}>Edit</Link>
-        <button className="delete-button">Delete</button>
+        <button className="delete-button" onClick={handleDelete}>Delete</button>
       </div>
     </div>
   );
