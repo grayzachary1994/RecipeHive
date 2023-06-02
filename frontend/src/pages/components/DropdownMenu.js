@@ -18,6 +18,7 @@ export default function DropdownMenu({isOpen}) {
 
     function handleLogout(){
         setAuth(['', '', '', '']);
+        navigate('/login');
     }
 
     return (

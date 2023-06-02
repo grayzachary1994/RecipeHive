@@ -59,15 +59,6 @@ export default function Login() {
         }
     }
 
-    // async function testToken(event) {
-    //     event.preventDefault()
-    //     const response = await userService.get('api/test/user',
-    //         {
-    //             headers: {Authorization: `Bearer ${auth.accessToken}`}
-    //         });
-    //     console.log(response.data)
-    // }
-
     return (
         <div className="login-page">
             <div className="login">
@@ -91,7 +82,6 @@ export default function Login() {
                     <button onClick={handleForgotPassword}>Forgot password?</button>
                     <button onClick={handleRegisterRedirect}>Register new user!</button>
                 </div>
-                {/* <button onClick={testToken}>Click me</button> */}
             </div>
         </div>
         
