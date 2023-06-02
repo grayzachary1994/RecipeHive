@@ -119,3 +119,20 @@
     color: black;
     font-weight: 400;
   }
+  .logout-button {
+  display: flex;
+  position: absolute;
+  right: 10%;
+  }
+  .logout-button > button {
+  font-family: 'Inter', sans-serif;
+      border-radius: 5px;
+      border: none;
+      height: 40px;
+      box-shadow: 2px 2px 2px;
+      cursor: pointer;
+      background-color: #f5a03b;
+  }
+  .logout-button > button:hover {
+    background-color: #cd8732;
+  }

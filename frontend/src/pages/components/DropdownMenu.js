@@ -1,8 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../auth/useAuth";
 
 export default function DropdownMenu({isOpen}) {
     const navigate = useNavigate();
+    const { setAuth } = useAuth();
 
     const menuStyle = isOpen ? {display: 'block'} : {display: 'none'};
 
@@ -15,7 +17,8 @@ export default function DropdownMenu({isOpen}) {
     }
 
     function handleLogout(){
-        navigate('/login')
+        setAuth(['', '', '', '']);
+        navigate('/login');
     }
 
     return (

@@ -90,6 +90,7 @@
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
+  box-shadow: 2px 2px 5px #99813d;
 }
 
 .recipe-card button:hover {
@@ -159,6 +160,7 @@
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
+  box-shadow: 2px 2px 5px #99813d;
 }
 
 .edit-button:hover {
