@@ -6,6 +6,7 @@ const FORGOT_PASS_URL = '/api/recovery/forgot_password'
 
 export default function ForgotPassword() {
     const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
 
     function handleEmailChange(event) {
         const {value} = event.target;
@@ -25,22 +26,24 @@ export default function ForgotPassword() {
                     }
                 });
                 console.log(response.data)
+                setMessage(response.data)
         } catch(err) {
-            console.log("Email not found")
+            setMessage("Email not found. Please enter a valid email.")
         }
     }
 
     return (
         <div className="forgot-password">
             <div className="forgot-password-form">
-                <p>We will be sending a password reset link to your email.</p>
+                {!message && <p>Enter your account email to reset the password.</p>}
+                {message && <p className="request-received">{message}</p>}
                 <input 
                     type="email"
                     placeholder="Enter your email"
                     name="email"
                     onChange={handleEmailChange}
                 />
-                <button onClick={handleSubmit}>Send Reset Email</button>
+                <button className="button-email" onClick={handleSubmit}>Send Reset Email</button>
             </div>
         </div>
     )

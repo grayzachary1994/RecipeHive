@@ -55,7 +55,7 @@
     border-radius: 5px;
     border: none;
     height: 40px;
-    box-shadow: 2px 2px 1px;
+    box-shadow: 2px 2px 1px #996424;
     text-indent: 10px;
   }
   
@@ -64,7 +64,7 @@
     border-radius: 5px;
     border: none;
     height: 40px;
-    box-shadow: 2px 2px 2px;
+    box-shadow: 2px 2px 2px #996424;
     cursor: pointer;
     background-color: #f5a03b;
   }
@@ -89,7 +89,7 @@
     background-image: linear-gradient(15deg, #ffea31 0%, #e94439 100%);
     border: none;
     border-radius: 5px;
-    box-shadow: 2px 2px 4px black;
+    box-shadow: 2px 2px 4px #996424;
   }
 
   .register--links > button:hover {

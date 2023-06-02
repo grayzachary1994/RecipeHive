@@ -10,7 +10,6 @@ export default function ResetPassword() {
 
     const [password, setPassword] = useState('');
     const [verify, setVerify] = useState('');
-    const [isMatching, setIsMatching] = useState(true);
     const [isChanged, setIsChanged] = useState(false);
     const [errors, setErrors] = useState('');
     const [token, setToken] = useState('');
@@ -49,7 +48,6 @@ export default function ResetPassword() {
                 setErrors('');
                 setIsChanged(true);
             } else if (password !== verify) {
-                setIsMatching(false);
                 setPassword('');
                 setVerify('');
                 setErrors('Passwords do not match!')

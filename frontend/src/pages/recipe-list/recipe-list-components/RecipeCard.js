@@ -29,8 +29,8 @@ export default function RecipeCard(props) {
           <p>{props.time}</p>
         </div>
       </div>
-      <div className="view-button">
-        <button onClick={clickViewRecipe}>View Recipe</button>
+      <div>
+        <button className="view-button" onClick={clickViewRecipe}>View Recipe</button>
       </div>
       {isExpanded && ( 
         <div className='popup-view'>

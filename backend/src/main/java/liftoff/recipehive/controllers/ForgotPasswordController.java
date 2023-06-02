@@ -36,7 +36,7 @@ public class ForgotPasswordController {
 //        String resetPasswordLink = Utility.getSiteURL(request) + "/api/recovery/reset_password?token=" + token;
         sendEmail(email, token);
 
-        return ResponseEntity.ok("Password reset request received.");
+        return ResponseEntity.ok("Password reset request received. Please check your email.");
     }
 
     @PostMapping("/reset_password")
