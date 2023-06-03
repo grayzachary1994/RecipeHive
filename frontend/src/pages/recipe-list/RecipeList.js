@@ -30,7 +30,7 @@ export default function RecipeList() {
         } catch(err) {
             console.log(err, "Recipe List not found")
         }
-    }, []);
+    }, [auth.accessToken]);
 
     const recipeElements = recipes.map((recipe)=> {
         return (
