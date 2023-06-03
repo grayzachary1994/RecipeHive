@@ -1,12 +1,10 @@
 import React from "react";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import recipeService from '../../../services/RecipeService';
 
 const DELETE_RECIPE_URL = 'api/recipe/delete/';
 
-export default function ExpandedCard(props) {
-
-  const navigate = useNavigate();
+export default function ExpandedCard({closeViewRecipe, deleteRecipe, id, name, description, imageUrl, steps, ingredients, title, time}) {
 
   const listedIngredients = (ingredient, number) => (
     <li key={number}>{ingredient}</li>
@@ -18,40 +16,40 @@ export default function ExpandedCard(props) {
 
   async function handleDelete() {
     try {
-      const response = await recipeService.get(DELETE_RECIPE_URL+props.id);
-      console.log(response)
-      navigate('/')
+      const response = await recipeService.get(DELETE_RECIPE_URL+id);
+      closeViewRecipe();
+      deleteRecipe(id);
     } catch(err) {
-      console.log('Recipe not deleted.')
+      console.log('Recipe not found.', err)
     }
   }
 
   return (
     <div className="expanded-card">
-      <img className="expanded-image" src={props.imageUrl} alt={props.name} />
+      <img className="expanded-image" src={imageUrl} alt={name} />
       <div className="expanded-title">
-        <h2>{props.title}</h2>
+        <h2>{title}</h2>
       </div>
       <div className="expanded-details">
-        <p>{props.description}</p>
+        <p>{description}</p>
       </div>
       <div className="expanded-ingredients">
         <h3>Ingredients:</h3>
         <ul>
-          {props.ingredients.map(listedIngredients)}
+          {ingredients.map(listedIngredients)}
         </ul>
       </div>
       <div className="expanded-directions">
         <h3>Steps:</h3>
         <ol>
-          {props.steps.map(listedDirections)}
+          {steps.map(listedDirections)}
         </ol>
       </div>
       <div className="expanded-time">
-        <p>{props.time}</p>
+        <p>{time}</p>
       </div>
       <div className="expanded-buttons">
-        <Link className="edit-button" to={`/update/${props.id}`}>Edit</Link>
+        <Link className="edit-button" to={`/update/${id}`}>Edit</Link>
         <button className="delete-button" onClick={handleDelete}>Delete</button>
       </div>
     </div>

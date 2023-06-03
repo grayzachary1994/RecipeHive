@@ -4,29 +4,28 @@ import {FaTimes} from 'react-icons/fa';
 import clock from '../../images/clock.png'
 import ExpandedCard from './ExpandedCard';
 
-export default function RecipeCard(props) {
-
+export default function RecipeCard({id, name, description, imageUrl, steps, ingredients, title, time, deleteRecipe}) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const clickViewRecipe = () => {
     setIsExpanded(true);
   }
 
-  const closeViewRecipe = () => {
+  function closeViewRecipe() {
     setIsExpanded(false);
   }
 
   return (
     <div className="recipe-card">
-      <img src={props.imageUrl} alt={props.name} />
+      <img src={imageUrl} alt={name} />
       <div className="recipe-title">
-        <h2>{props.name}</h2>
+        <h2>{name}</h2>
       </div>
       <div className="recipe-details">
-        <p>{props.description}</p>
+        <p>{description}</p>
         <div className="recipe-time">
           <img src={clock} className="clockIcon" alt="clock" />
-          <p>{props.time}</p>
+          <p>{time}</p>
         </div>
       </div>
       <div>
@@ -36,7 +35,18 @@ export default function RecipeCard(props) {
         <div className='popup-view'>
           <div className='popup'>
             <button className='close-button' onClick={closeViewRecipe}><FaTimes/></button>
-            <ExpandedCard {...props} />
+            <ExpandedCard 
+              deleteRecipe={deleteRecipe}
+              id={id}
+              imageUrl={imageUrl}
+              name={name}
+              title={title}
+              description={description}
+              ingredients={ingredients}
+              steps={steps}
+              time={time}
+              closeViewRecipe={closeViewRecipe} 
+            />
           </div>
         </div>
       )}

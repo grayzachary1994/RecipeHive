@@ -12,7 +12,9 @@ export default function RecipeList() {
     const [recipes, setRecipes] = useState([]);
     const { auth } = useAuth();
 
-    
+    function deleteRecipe(recipeToDeleteId) {
+        setRecipes(recipes.filter(recipe => recipe.id !== recipeToDeleteId))
+    }
 
     useEffect(() => {
         try {
@@ -36,12 +38,21 @@ export default function RecipeList() {
         return (
             <RecipeCard
             key = {recipe.id}
-            {...recipe}
+            // {...recipe}
+            id={recipe.id}
+            name={recipe.name}
+            description={recipe.description}
+            imageUrl={recipe.imageUrl}
+            steps={recipe.steps}
+            ingredients={recipe.ingredients}
+            title={recipe.title}
+            time={recipe.time}
+            deleteRecipe={deleteRecipe}
             />
         )
     })
 
-    return (
+return (
         <div className="recipeListPage">
             {recipeElements}
         </div>

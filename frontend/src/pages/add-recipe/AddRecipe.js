@@ -87,6 +87,13 @@ export default function AddRecipe() {
     }
   }
 
+  function handleKeyDown(key, callPassedInFunction) {
+
+    if (key === "Enter") {
+      callPassedInFunction()
+    }
+  }
+
   return (
     <div className="recipe-page">
       <div className="add-recipe">
@@ -118,6 +125,7 @@ export default function AddRecipe() {
               className="add-recipe-input-field"
               type="text"
               name="ingredient"
+              onKeyDown={(e) => handleKeyDown(e.key, addIngredient)}
               onChange={handleIngredient}
               value={ingredientName}
             />
@@ -153,6 +161,7 @@ export default function AddRecipe() {
               name="step"
               onChange={handleStep}
               value={stepStr}
+              onKeyDown={(e) => handleKeyDown(e.key, addStep)}
             />
           </div>
           <button className="extraInput" onClick={addStep}>
