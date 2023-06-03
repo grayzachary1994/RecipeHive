@@ -23,7 +23,6 @@ export default function UpdateRecipe({recipeId, recipeName, description, ingredi
       time,
       imageUrl
     }
-    console.log(payload, 'You submitted!')
     try {
       const response = await UserService.put(UPDATE_RECIPE_URL+id, payload,
         {
@@ -36,6 +35,12 @@ export default function UpdateRecipe({recipeId, recipeName, description, ingredi
         navigate('/');
     } catch(err) {
       console.log(err, "Recipe not updated")
+    }
+  }
+
+  function handleKeyDown(key, callPassedInFunction) {
+    if (key === "Enter") {
+      callPassedInFunction()
     }
   }
 
@@ -70,6 +75,7 @@ export default function UpdateRecipe({recipeId, recipeName, description, ingredi
               className="edit-recipe-input-field"
               type="text"
               name="ingredient"
+              onKeyDown={(e) => handleKeyDown(e.key, addIngredient)}
               onChange={(e)=>handleIngredient(e.target.value)}
               value={ingredientName}
             />
@@ -103,6 +109,7 @@ export default function UpdateRecipe({recipeId, recipeName, description, ingredi
               className="edit-recipe-input-field"
               type="text"
               name="step"
+              onKeyDown={(e) => handleKeyDown(e.key, addStep)}
               onChange={(e)=>handleStep(e.target.value)}
               value={stepStr}
             />

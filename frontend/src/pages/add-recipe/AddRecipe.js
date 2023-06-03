@@ -88,7 +88,6 @@ export default function AddRecipe() {
   }
 
   function handleKeyDown(key, callPassedInFunction) {
-
     if (key === "Enter") {
       callPassedInFunction()
     }
