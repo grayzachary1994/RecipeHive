@@ -3,14 +3,21 @@ import "./recipeList.css";
 import RecipeCard from "./recipe-list-components/RecipeCard.js";
 import useAuth from "../../auth/useAuth";
 import RecipeService from "../../services/RecipeService";
+import { useNavigate } from "react-router-dom";
 const GET_RECIPE_URL = "/api/recipe/recipe-list";
 
 export default function RecipeList({ searchTerm }) {
   const [recipes, setRecipes] = useState([]);
+  const [recipesExist, setRecipesExist] = useState(false)
   const { auth } = useAuth();
+  const navigate = useNavigate();
 
   function deleteRecipe(recipeToDeleteId) {
     setRecipes(recipes.filter((recipe) => recipe.id !== recipeToDeleteId));
+  }
+
+  function handleAddRecipe() {
+    navigate('/add')
   }
 
   useEffect(() => {
@@ -52,5 +59,19 @@ export default function RecipeList({ searchTerm }) {
     />
   ));
 
-  return <div className="recipeListPage">{recipeElements}</div>;
+  return (
+    <div className="recipeListPage">
+      {recipeElements.length > 0 && <>
+        <div className="recipeListPage">
+          {recipeElements}
+        </div>
+      </>}
+      {recipeElements.length === 0 && <>
+        <div className="recipeListNoRecipe">
+          <p>Oops! Looks like you don't have any recipes!</p>
+          <button onClick={handleAddRecipe} className="add-recipe-button">Add a new Recipe?</button>
+        </div>
+      </>}
+    </div>
+  );
 }

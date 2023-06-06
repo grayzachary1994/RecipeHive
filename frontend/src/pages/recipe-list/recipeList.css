@@ -180,3 +180,44 @@
     max-width: 25%;
   }
 }
+
+.recipeListNoRecipe {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 3px;
+  border-style: solid;
+  border-color: #fbd466;
+  border-radius: 8px;
+  width: 300px;
+  height: 8em;
+  padding: 10px;
+  background-color: #fbd466;
+  box-shadow: 2px 2px 5px #99813d;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+}
+
+.recipeListNoRecipe p {
+  margin: 10px;
+}
+
+.add-recipe-button {
+  font-family: "Inter", sans-serif;
+  text-decoration: none;
+  display: block;
+  margin: 10px auto;
+  padding: 10px 20px;
+  background-color: #f5a03b;
+  color: #fdf5eb;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px #99813d;
+}
+
+.add-recipe-button:hover {
+  background-color: #cd8732;
+}
