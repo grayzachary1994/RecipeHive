@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import Navbar from "../components/Navbar";
+import NavbarNoSearch from "../components/NavbarNoSearch";
 import UpdateRecipe from "./UpdateRecipe";
 import useAuth from "../../auth/useAuth";
 
@@ -93,7 +93,7 @@ export default function UpdateRecipePage() {
 
     return (
         <div>
-            <Navbar />
+            <NavbarNoSearch />
             <UpdateRecipe 
                 recipeId={recipeId}
                 recipeName={recipeName}
