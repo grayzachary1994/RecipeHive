@@ -8,7 +8,6 @@ const GET_RECIPE_URL = "/api/recipe/recipe-list";
 
 export default function RecipeList({ searchTerm }) {
   const [recipes, setRecipes] = useState([]);
-  const [recipesExist, setRecipesExist] = useState(false)
   const { auth } = useAuth();
   const navigate = useNavigate();
 

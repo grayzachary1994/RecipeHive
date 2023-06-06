@@ -1,12 +1,12 @@
 import React from "react";
 
-import Navbar from "../components/Navbar";
+import NavbarLogin from "../components/NavbarLogin";
 import Login from "./Login";
 
 export default function LoginPage() {
     return (
         <>
-            <Navbar />            
+            <NavbarLogin />            
             <Login />
         </>
     )
