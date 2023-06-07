@@ -62,6 +62,7 @@ export default function Login() {
     return (
         <div className="login-page">
             <div className="login">
+                <h1 className="login--title">Login</h1>
                 <div className="login--field">
                     <input 
                         placeholder="Username"

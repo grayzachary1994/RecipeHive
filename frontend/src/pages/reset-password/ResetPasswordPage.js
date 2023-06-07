@@ -1,11 +1,11 @@
 import React from "react";
-import Navbar from "../components/Navbar";
+import NavbarNoSearch from "../components/NavbarNoSearch";
 import ResetPassword from "./ResetPassword";
 
 export default function ResetPasswordPage() {
     return (
         <>
-            <Navbar />
+            <NavbarNoSearch />
             <ResetPassword />
         </>
     )

@@ -22,12 +22,25 @@
     border-style: solid;
     border-color: #fbd466;
     border-radius: 8px;
-    width: 300px;
-    height: 14em;
+    width: 20rem;
+    height: 17em;
     padding: 10px;
     background-color: #fbd466;
     box-shadow: 2px 2px 5px #99813d;
   }
+
+  .login--title {
+    font-size: 2.5rem;
+    font-family: 'Pacifico', cursive;
+    color: #b1dedd;
+    -webkit-text-stroke: #48bec5;
+    -webkit-text-stroke-width: 1px;
+    text-shadow: black;
+    text-align: center;
+    text-shadow: 2px 2px 4px #615126;
+    margin: 0;
+    padding-bottom: 10px;
+}
   
   .login--field {
     display: flex; 

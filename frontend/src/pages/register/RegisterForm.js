@@ -21,7 +21,7 @@ export default function RegisterForm() {
     }
 
     function handleForgotPassword(){
-        // navigate('http://www.google.com')
+        navigate('/forgot-password')
     }
 
     function handleFormChange(event) {
