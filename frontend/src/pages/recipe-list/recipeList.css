@@ -97,18 +97,6 @@
   background-color: #cd8732;
 }
 
-.popup-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .popup {
   position: fixed;
   top: 50%;
@@ -175,12 +163,6 @@
   background-color: #a7322a !important;
 }
 
-@media (min-width: 768px) {
-  .popup {
-    max-width: 25%;
-  }
-}
-
 .recipeListNoRecipe {
   display: flex;
   flex-direction: column;
@@ -221,3 +203,48 @@
 .add-recipe-button:hover {
   background-color: #cd8732;
 }
+
+.delete-confirm {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 5px;
+  border-style: solid;
+  border-radius: 5px;
+  background-color: #fdf5eb;
+  border-color: #e94538;
+  box-shadow: 2px 2px 2px #a7322a;
+  height: 10rem;
+  width: 20rem;
+}
+
+.delete-elements {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: auto;
+  height: 100%;
+}
+
+.delete-message {
+  font-weight: 700;
+}
+
+.delete-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.delete-proceed {
+  background-color: #e94538 !important;
+}
+
+.delete-proceed:hover {
+  background-color: #a7322a !important;
+}
+
+
