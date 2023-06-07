@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: flex-start;
   padding-top: 75px;
-  height: 40em;
+  height: 40rem;
   width: auto;
 }
 
@@ -36,7 +36,7 @@
     border-color: #fbd466;
     border-radius: 8px;
     width: 20rem;
-    height: 25em;
+    height: 28em;
     padding: 10px;
     background-color: #fbd466;
     box-shadow: 2px 2px 5px #99813d;

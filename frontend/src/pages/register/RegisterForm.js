@@ -8,13 +8,15 @@ export default function RegisterForm() {
 
     const navigate = useNavigate();
 
-    const [isMatching, setIsMatching] = useState(true);
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [verify, setVerify] = useState('');
-    const [formData, setFormData] = useState({
-        username: '',
-        email: '',
-        password: '',
-    })
+    const [errors, setErrors] = useState('');
+    const [usernameErrors, setUsernameErrors] = useState('');
+    const [emailErrors, setEmailErrors] = useState('');
+    const [passwordErrors, setPasswordErrors] = useState('');
+    
 
     function handleLoginRedirect() {
         navigate('/login')
@@ -24,52 +26,70 @@ export default function RegisterForm() {
         navigate('/forgot-password')
     }
 
-    function handleFormChange(event) {
-        const {name, value} = event.target
-        setFormData(prevFormData => {
-            return {
-                ...prevFormData,
-                [name]: value
-            }
-        })
+    function handleUsername(event) {
+        setUsername(event.target.value);
+    }
+
+    function handleEmail(event) {
+        setEmail(event.target.value);
+    }
+
+    function handlePassword(event) {
+        setPassword(event.target.value);
     }
 
     function handleVerify(event) {
-        const {value} = event.target;
-        setVerify(value)
-        
+        setVerify(event.target.value)
+    }
+
+    function errorCheck(username, email, password) {
+        if (username.length >= 3 && username.length <= 20) {
+            setUsernameErrors('');
+        }
+        if (email.length <= 50 && email.includes('@') && email.includes('.com')) {
+            setEmailErrors('');
+        }
+        if (password && verify) {
+            setErrors('');
+        }
+        if (password === verify) {
+            setPasswordErrors('')
+        }
     }
 
     async function handleFormSubmit(event) {
         try {
-            if (formData.password !== verify) {
-                event.preventDefault();
-                setIsMatching(false);
-                setVerify('')
-                setFormData(prevFormData => {
-                    return {
-                        ...prevFormData,
-                        password: ''
-                    }
-                })
+            const payload = {
+                username: username,
+                email: email,
+                password: password
+            }
+
+            errorCheck(username, email, password);
+
+            if (username.length < 3 || username.length > 20) {
+                setUsernameErrors('Username must be between 3 and 20 characters.')
+            } else if (email.length > 50) {
+                setEmailErrors('Email is too long.');
+            } else if (!email.includes("@") || !email.includes('.com')) {
+                setEmailErrors('Not a valid email.')
+            } else if (!username || !email || !password || !verify) {
+                setErrors("Fields cannot be blank!")
+                console.log('blank fields');
+            } else if (password !== verify) {
+                setPasswordErrors('Passwords do not match!')
+                setVerify('');
+                setPassword('');
             } else {
                 event.preventDefault();
-                const response = await userService.post(REGISTER_URL, formData);
-                console.log(response.status)
+                const response = await userService.post(REGISTER_URL, payload);
                 if (response.status === 200) {
-                    navigate('/login')
-                } else {
-                    setFormData({
-                        username: '',
-                        email: '',
-                        password: ''
-                    })
-                    setVerify('');
+                    navigate('/');
                 }
             }
         }
         catch(e) {
-            console.log(e)
+            setErrors('User already exists or unable to process request.')
         }
     }
 
@@ -83,25 +103,28 @@ export default function RegisterForm() {
                         type="text"
                         name="username"
                         placeholder="Username"
-                        onChange={handleFormChange}
-                        value={formData.username} 
+                        onChange={handleUsername}
+                        value={username} 
                     />
+                    {usernameErrors && <p className="error">{usernameErrors}</p>}
                     <input 
                         className="register--inputs"
                         type="email"
                         name="email"
                         placeholder="Email"
-                        onChange={handleFormChange}
-                        value={formData.email} 
+                        onChange={handleEmail}
+                        value={email} 
                     />
+                    {emailErrors && <p className="error">{emailErrors}</p>}
                     <input 
                         className="register--inputs"
                         type="password"
                         name="password"
                         placeholder="Password"
-                        onChange={handleFormChange}
-                        value={formData.password} 
+                        onChange={handlePassword}
+                        value={password} 
                     />
+                    {passwordErrors && <p className="error">{passwordErrors}</p>}
                     <input 
                         className="register--inputs"
                         type="password"
@@ -110,7 +133,7 @@ export default function RegisterForm() {
                         onChange={handleVerify}
                         value={verify}
                     />
-                    {!isMatching && <p className="error">Passwords do not match!</p>}
+                    {errors && <p className="error">{errors}</p>}
                     <button onClick={handleFormSubmit} className="registerButton">Register</button>
                 </div>
                 <div className="register--links">

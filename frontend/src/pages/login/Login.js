@@ -8,12 +8,13 @@ import userService from "../../services/UserService";
 const LOGIN_URL = '/api/auth/signin';
 
 export default function Login() {
-    const { setAuth, auth } = useAuth();
+    const { setAuth } = useAuth();
 
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
 
+    const [errors, setErrors] = useState('');
     const [formData, setFormData] = useState({
         username: '',
         password: ''
@@ -55,7 +56,8 @@ export default function Login() {
             })
             navigate(from, { replace: true });
         } catch(err) {
-            console.log(err, "Login Failed")
+            console.log("Login Failed")
+            setErrors('Invalid Username and/or Password')
         }
     }
 
@@ -77,6 +79,7 @@ export default function Login() {
                         onChange={handleFormChange}
                         value={formData.password}
                     />
+                    {errors && <p className="errors">{errors}</p>}
                     <button onClick={handleFormSubmit}>Log In</button>
                 </div>
                 <div className="login--links">

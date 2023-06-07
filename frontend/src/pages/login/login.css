@@ -23,7 +23,7 @@
     border-color: #fbd466;
     border-radius: 8px;
     width: 20rem;
-    height: 17em;
+    height: 18em;
     padding: 10px;
     background-color: #fbd466;
     box-shadow: 2px 2px 5px #99813d;
@@ -92,4 +92,10 @@
 
   .login--links > button:hover {
     background-image: linear-gradient(15deg, #e94439 0%, #ffea31 100%);
+  }
+
+  .errors {
+    color: #e94439;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
   }

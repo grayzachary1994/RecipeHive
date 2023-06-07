@@ -72,7 +72,6 @@ export default function AddRecipe() {
       time: time,
       imageUrl: selectedImageUrl,
     };
-    console.log(payload, "You submitted!");
     try {
       const response = await UserService.post(RECIPE_URL, payload, {
         headers: {
@@ -83,7 +82,7 @@ export default function AddRecipe() {
       console.log(response);
       navigate("/");
     } catch (err) {
-      console.log(err, "Recipe not added");
+      console.log("Recipe not added");
     }
   }
 
