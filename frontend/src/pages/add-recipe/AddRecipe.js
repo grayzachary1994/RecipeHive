@@ -193,18 +193,21 @@ export default function AddRecipe() {
           />
         </div>
         <div className="add-recipe-input">
-          <label className="recipe-image">Upload an Image URL: </label>
-          <input
-            type="text"
-            onChange={(e) => {
-              setSelectedImageUrl(e.target.value);
-              setPreview(e.target.value);
-            }}
-            value={selectedImageUrl}
-          />
-          {preview && (
-            <img className="preview-image" src={preview} alt="Preview" />
-          )}
+          <div className="add-image">
+            <label className="recipe-image">Upload an Image URL: </label>
+            <input
+              className="add-image-field"
+              type="text"
+              onChange={(e) => {
+                setSelectedImageUrl(e.target.value);
+                setPreview(e.target.value);
+              }}
+              value={selectedImageUrl}
+              />
+            {preview && (
+              <img className="preview-image" src={preview} alt="Preview" />
+              )}
+          </div>
         </div>
         <button onClick={handleFormSubmit}>Add Recipe to Your Hive!</button>
       </div>

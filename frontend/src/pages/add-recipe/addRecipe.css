@@ -31,8 +31,8 @@
   box-sizing: border-box;
   border-radius: 5px;
   border: none;
-  height: 30px;
-  box-shadow: 2px 2px 1px;
+  height: 2.1rem;
+  box-shadow: 2px 2px 1px #99813d;
 }
 
 .recipe-name {
@@ -65,15 +65,28 @@
   font: 100% / normal sans-serif;
   font-weight: bold;
   align-items:first baseline;
+  padding-bottom: .7rem;
 }
 
+.add-image {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.add-image-field {
+  width: 100%;
+  height: 2.1rem;
+}
 
 .add-recipe > button {
   font-family: "Inter", sans-serif;
+  font-size: 16pt;
   border-radius: 5px;
   border: none;
   height: 40px;
-  box-shadow: 2px 2px 2px;
+  width: 100%;
+  box-shadow: 2px 2px 2px #99813d;
   cursor: pointer;
   background-color: #f5a03b;
 }
@@ -98,10 +111,12 @@ input {
 
 .extraInput {
   font-family: "Inter", sans-serif;
+  font-size: 12pt;
   border-radius: 5px;
   border: none;
-  height: 20px;
-  box-shadow: 2px 2px 2px;
+  height: 2.3rem !important;
+  width: 100%;
+  box-shadow: 2px 2px 2px #99813d !important;
   cursor: pointer;
   background-color: #f5a03b;
 }
