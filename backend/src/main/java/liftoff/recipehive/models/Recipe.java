@@ -1,9 +1,6 @@
 package liftoff.recipehive.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -16,18 +13,24 @@ public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(columnDefinition = "TEXT")
     @Size(min=3, message="Name must be 3 characters or longer.")
     private String name;
+    @Column(columnDefinition = "TEXT")
     @Size(min=5, message="Description must be 5 characters or longer.")
     private String description;
+
+    @Column(columnDefinition = "TEXT")
     @NotEmpty(message = "Ingredients required.")
     private String ingredients;
+
+    @Column(columnDefinition = "TEXT")
     @NotEmpty(message = "Steps required.")
     private String steps;
     private String time;
 
     private String recipeUserName;
-
+    @Column(columnDefinition = "TEXT")
     public String imageUrl;
     public Recipe(){
 
