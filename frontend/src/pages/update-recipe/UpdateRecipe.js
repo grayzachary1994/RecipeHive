@@ -83,7 +83,7 @@ export default function UpdateRecipe({recipeId, recipeName, description, ingredi
           <button className="extraInput" onClick={()=> addIngredient()}>
             Add Ingredient
           </button>
-          <ul>
+          {ingredientArr.length > 0 && <ul>
             {ingredientArr.map((ingredient) => (
               <li key={ingredient.name}>
                 {ingredient.name}
@@ -100,7 +100,7 @@ export default function UpdateRecipe({recipeId, recipeName, description, ingredi
                 </div>
               </li>
             ))}
-          </ul>
+          </ul>}
         </div>
         <div className="edit-recipe-input">
           <label className="recipe-steps">Steps: </label>
@@ -117,7 +117,7 @@ export default function UpdateRecipe({recipeId, recipeName, description, ingredi
           <button className="extraInput" onClick={()=>addStep()}>
             Add Step
           </button>
-          <ol>
+          {stepArr.length > 0 && <ol>
             {stepArr.map((step) => (
               <li key={step.name}>
                 {step.name}
@@ -132,7 +132,7 @@ export default function UpdateRecipe({recipeId, recipeName, description, ingredi
                 </div>
               </li>
             ))}
-          </ol>
+          </ol>}
         </div>
         <div className="edit-recipe-input">
           <label className="recipe-time">Time to Cook: </label>
