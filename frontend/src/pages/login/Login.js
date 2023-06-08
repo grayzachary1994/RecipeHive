@@ -71,6 +71,7 @@ export default function Login() {
                         name="username"
                         onChange={handleFormChange}
                         value={formData.username}
+                        maxLength={20}
                     />
                     <input 
                         type="password"
@@ -78,6 +79,7 @@ export default function Login() {
                         name="password"
                         onChange={handleFormChange}
                         value={formData.password}
+                        maxLength={40}
                     />
                     {errors && <p className="errors">{errors}</p>}
                     <button onClick={handleFormSubmit}>Log In</button>

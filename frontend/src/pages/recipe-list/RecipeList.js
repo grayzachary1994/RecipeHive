@@ -66,10 +66,16 @@ export default function RecipeList({ searchTerm }) {
         </div>
       </>}
       {recipeElements.length === 0 && <>
-        <div className="recipeListNoRecipe">
+        {searchTerm ? 
+          <div className="recipeListNoRecipe">
+          <p>Oops! Looks like you can't find any recipes!</p>
+          <button onClick={handleAddRecipe} className="add-recipe-button">Add a new recipe?</button>
+          </div> :
+          <div className="recipeListNoRecipe">
           <p>Oops! Looks like you don't have any recipes!</p>
-          <button onClick={handleAddRecipe} className="add-recipe-button">Add a new Recipe?</button>
-        </div>
+          <button onClick={handleAddRecipe} className="add-recipe-button">Add a new recipe?</button>
+          </div>
+        }
       </>}
     </div>
   );

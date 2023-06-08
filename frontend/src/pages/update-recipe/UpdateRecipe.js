@@ -148,7 +148,7 @@ export default function UpdateRecipe({recipeId, recipeName, description, ingredi
           <label className="recipe-image">Upload an Image: </label>
           <input type="text" onChange={(e)=>fileInputChange(e.target.value)} value={imageUrl}></input>
           {preview && (
-            <img className="preview-image" src={preview} alt="chicken" />
+            <img className="preview-image" src={preview} alt="Preview" />
           )}
         </div>
         <button onClick={() => handleFormSubmit(recipeName, description, ingredientArr, stepArr, time, imageUrl)}>

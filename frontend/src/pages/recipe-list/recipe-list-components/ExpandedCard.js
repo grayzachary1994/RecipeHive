@@ -70,7 +70,7 @@ export default function ExpandedCard({closeViewRecipe, deleteRecipe, id, name, d
             <p className="delete-message">Are you sure you want to delete this recipe?</p>
             <div className="delete-buttons">
               <button className="delete-cancel" onClick={closeConfirmWindow}>Cancel</button>
-              <button className="delete-proceed" onClick={handleDelete}>YES</button>
+              <button className="delete-proceed" onClick={handleDelete}>Yes</button>
             </div>
           </div>
         </div>
