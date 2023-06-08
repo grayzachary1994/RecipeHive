@@ -10,6 +10,7 @@ let nextId = 0;
 export default function AddRecipe() {
   const { auth } = useAuth();
   const navigate = useNavigate();
+
   const [preview, setPreview] = useState(null);
   const [selectedImageUrl, setSelectedImageUrl] = useState(''); 
   const [ingredientName, setIngredientName] = useState("");
@@ -19,6 +20,7 @@ export default function AddRecipe() {
   const [recipeName, setRecipeName] = useState("");
   const [description, setDescription] = useState("");
   const [time, setTime] = useState("");
+  const [errors, setErrors] = useState('');
 
   function handleRecipeNameChange(event) {
     const { value } = event.target;
@@ -73,16 +75,20 @@ export default function AddRecipe() {
       imageUrl: selectedImageUrl,
     };
     try {
-      const response = await UserService.post(RECIPE_URL, payload, {
-        headers: {
-          Authorization: `Bearer ${auth.accessToken}`,
-          "Content-Type": "application/json",
-        },
-      });
-      console.log(response);
-      navigate("/");
+      if (!recipeName || !description || !time || formattedIngredients.length === 0 || formattedSteps === 0) {
+        setErrors('Recipe must contain a name, description, ingredients, steps, and time to cook.');
+      } else {
+        await UserService.post(RECIPE_URL, payload, {
+          headers: {
+            Authorization: `Bearer ${auth.accessToken}`,
+            "Content-Type": "application/json",
+          },
+        });
+        navigate("/");
+      }
     } catch (err) {
       console.log("Recipe not added");
+      setErrors('Uknown error. Recipe not added.')
     }
   }
 
@@ -209,6 +215,7 @@ export default function AddRecipe() {
               )}
           </div>
         </div>
+        {errors && <p className="errors">{errors}</p>}
         <button onClick={handleFormSubmit}>Add Recipe to Your Hive!</button>
       </div>
     </div>

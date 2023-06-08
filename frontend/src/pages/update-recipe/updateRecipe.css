@@ -24,6 +24,7 @@
   
   .edit-recipe-input-field {
     width: 100%;
+    height: 2.1rem !important;
     padding: 12px 20px;
     margin: 8px 0;
     border: 1px solid #ccc;
@@ -32,7 +33,7 @@
     border-radius: 5px;
     border: none;
     height: 30px;
-    box-shadow: 2px 2px 1px;
+    box-shadow: 2px 2px 1px #99813d !important;
   }
   
   .recipe-name {
@@ -66,14 +67,24 @@
     font-weight: bold;
     align-items:first baseline;
   }
+
+  .edit-image {
+    display: flex;
+    flex-direction: column;
+  }
   
+  .edit-image-field {
+    height: 2.1rem;
+    width: 100%;
+  }
   
   .edit-recipe > button {
     font-family: "Inter", sans-serif;
+    font-size: 16pt;
     border-radius: 5px;
     border: none;
     height: 40px;
-    box-shadow: 2px 2px 2px;
+    box-shadow: 2px 2px 2px #99813d;
     cursor: pointer;
     background-color: #f5a03b;
   }
@@ -100,8 +111,8 @@
     font-family: "Inter", sans-serif;
     border-radius: 5px;
     border: none;
-    height: 20px;
-    box-shadow: 2px 2px 2px;
+    height: 2.1rem !important;
+    box-shadow: 2px 2px 2px #99813d !important;
     cursor: pointer;
     background-color: #f5a03b;
   }

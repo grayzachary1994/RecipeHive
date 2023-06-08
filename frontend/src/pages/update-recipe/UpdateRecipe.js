@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import UserService from "../../services/UserService";
@@ -7,6 +7,8 @@ import useAuth from "../../auth/useAuth";
 const UPDATE_RECIPE_URL = '/api/recipe/edit/'
 
 export default function UpdateRecipe({recipeId, recipeName, description, ingredientArr, ingredientName, stepArr, stepStr, time, handleRecipeNameChange, handleDescriptionChange, handleIngredient, setIngredientArr, setStepArr, handleStep, handleTimeChange, addIngredient, addStep, imageUrl, fileInputChange, preview}) {
+
+  const [errors, setErrors] = useState('');
 
   const { auth } = useAuth();
   const navigate = useNavigate();
@@ -24,17 +26,21 @@ export default function UpdateRecipe({recipeId, recipeName, description, ingredi
       imageUrl
     }
     try {
-      const response = await UserService.put(UPDATE_RECIPE_URL+id, payload,
-        {
-          headers: {
-            'Authorization': `Bearer ${auth.accessToken}`,
-            "Content-Type": 'application/json'
-          }
-        });
-        console.log(response);
-        navigate('/');
+      if (!name || !description || !time || formattedIngredients.length === 0 || formattedSteps === 0) {
+        setErrors('Recipe must contain a name, description, ingredients, steps, and time to cook.');
+      } else {
+        await UserService.put(UPDATE_RECIPE_URL+id, payload,
+          {
+            headers: {
+              'Authorization': `Bearer ${auth.accessToken}`,
+              "Content-Type": 'application/json'
+            }
+          });
+          navigate('/');
+      }
     } catch(err) {
-      console.log(err, "Recipe not updated")
+      console.log("Recipe not updated")
+      setErrors("Uknown error. Recipe not updated.")
     }
   }
 
@@ -145,12 +151,20 @@ export default function UpdateRecipe({recipeId, recipeName, description, ingredi
           />
         </div>
         <div className="edit-recipe-input">
-          <label className="recipe-image">Upload an Image: </label>
-          <input type="text" onChange={(e)=>fileInputChange(e.target.value)} value={imageUrl}></input>
-          {preview && (
-            <img className="preview-image" src={preview} alt="Preview" />
-          )}
+          <div className="edit-image">
+            <label className="recipe-image">Upload an Image: </label>
+            <input 
+              className="edit-image-field"
+              type="text" 
+              onChange={(e)=>fileInputChange(e.target.value)} 
+              value={imageUrl}
+            />
+            {preview && (
+              <img className="preview-image" src={preview} alt="Preview" />
+              )}
+          </div>
         </div>
+        {errors && <p className="errors">{errors}</p>}
         <button onClick={() => handleFormSubmit(recipeName, description, ingredientArr, stepArr, time, imageUrl)}>
           Submit Edits!
         </button>
