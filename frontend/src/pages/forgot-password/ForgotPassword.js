@@ -25,7 +25,6 @@ export default function ForgotPassword() {
                         "Content-Type": "application/json"
                     }
                 });
-                console.log(response.data)
                 setMessage(response.data)
         } catch(err) {
             setMessage("Email not found. Please enter a valid email.")

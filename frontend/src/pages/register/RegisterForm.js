@@ -75,7 +75,6 @@ export default function RegisterForm() {
                 setEmailErrors('Not a valid email.')
             } else if (!username || !email || !password || !verify) {
                 setErrors("Fields cannot be blank!")
-                console.log('blank fields');
             } else if (password !== verify) {
                 setPasswordErrors('Passwords do not match!')
                 setVerify('');

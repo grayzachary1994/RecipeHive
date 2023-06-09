@@ -7,6 +7,7 @@ const DELETE_RECIPE_URL = 'api/recipe/delete/';
 export default function ExpandedCard({closeViewRecipe, deleteRecipe, id, name, description, imageUrl, steps, ingredients, title, time}) {
 
   const [isExpanded, setIsExpanded] = useState(false);
+  const [errors, setErrors] = useState('');
 
   const listedIngredients = (ingredient, number) => (
     <li key={number}>{ingredient}</li>
@@ -30,13 +31,14 @@ export default function ExpandedCard({closeViewRecipe, deleteRecipe, id, name, d
       closeViewRecipe();
       deleteRecipe(id);
     } catch(err) {
-      console.log('Recipe not found.', err)
+      setErrors('Recipe not found.');
     }
   }
 
   return (
     <>
       <div className="expanded-card">
+        {errors && <p className="errors">{errors}</p>}
         <img className="expanded-image" src={imageUrl} alt={name} />
         <div className="expanded-title">
           <h2>{name}</h2>

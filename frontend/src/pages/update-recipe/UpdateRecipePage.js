@@ -23,6 +23,7 @@ export default function UpdateRecipePage() {
     const [stepStr, setStepStr] = useState('');
     const [stepArr, setStepArr] = useState([]);
     const [time, setTime] = useState('');
+    const [errors, setErrors] = useState('');
 
     const [preview, setPreview] = useState(null);
     const [imageUrl, setImageUrl] = useState('');
@@ -87,7 +88,7 @@ export default function UpdateRecipePage() {
                     setImageUrl(response.data.imageUrl)
             })
         } catch(err) {
-            console.log('Recipe not found', err)
+            setErrors('Recipe not found.');
         }
     }, [auth.accessToken, id])
 
@@ -116,6 +117,8 @@ export default function UpdateRecipePage() {
                 imageUrl={imageUrl}
                 fileInputChange={fileInputChange}
                 preview={preview}
+                errors={errors}
+                setErrors={setErrors}
                 />
         </div>
     )

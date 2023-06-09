@@ -87,7 +87,6 @@ export default function AddRecipe() {
         navigate("/");
       }
     } catch (err) {
-      console.log("Recipe not added");
       setErrors('Uknown error. Recipe not added.')
     }
   }

@@ -11,6 +11,8 @@ export default function RecipeList({ searchTerm }) {
   const { auth } = useAuth();
   const navigate = useNavigate();
 
+  const [errors, setErrors] = useState('');
+
   function deleteRecipe(recipeToDeleteId) {
     setRecipes(recipes.filter((recipe) => recipe.id !== recipeToDeleteId));
   }
@@ -30,7 +32,7 @@ export default function RecipeList({ searchTerm }) {
         setRecipes(response.data);
       });
     } catch (err) {
-      console.log(err, "Recipe List not found");
+      setErrors("Recipe list not found.");
     }
   }, [auth.accessToken]);
 
@@ -62,6 +64,7 @@ export default function RecipeList({ searchTerm }) {
     <div className="recipeListPage">
       {recipeElements.length > 0 && <>
         <div className="recipeListPage">
+          {errors && <p className="errors">{errors}</p>}
           {recipeElements}
         </div>
       </>}

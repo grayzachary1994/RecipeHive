@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import UserService from "../../services/UserService";
@@ -6,9 +6,9 @@ import useAuth from "../../auth/useAuth";
 
 const UPDATE_RECIPE_URL = '/api/recipe/edit/'
 
-export default function UpdateRecipe({recipeId, recipeName, description, ingredientArr, ingredientName, stepArr, stepStr, time, handleRecipeNameChange, handleDescriptionChange, handleIngredient, setIngredientArr, setStepArr, handleStep, handleTimeChange, addIngredient, addStep, imageUrl, fileInputChange, preview}) {
+export default function UpdateRecipe({recipeId, recipeName, description, ingredientArr, ingredientName, stepArr, stepStr, time, handleRecipeNameChange, handleDescriptionChange, handleIngredient, setIngredientArr, setStepArr, handleStep, handleTimeChange, addIngredient, addStep, imageUrl, fileInputChange, preview, errors, setErrors}) {
 
-  const [errors, setErrors] = useState('');
+  // const [errors, setErrors] = useState('');
 
   const { auth } = useAuth();
   const navigate = useNavigate();
@@ -39,7 +39,6 @@ export default function UpdateRecipe({recipeId, recipeName, description, ingredi
           navigate('/');
       }
     } catch(err) {
-      console.log("Recipe not updated")
       setErrors("Uknown error. Recipe not updated.")
     }
   }

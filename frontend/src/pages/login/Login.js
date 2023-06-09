@@ -56,7 +56,6 @@ export default function Login() {
             })
             navigate(from, { replace: true });
         } catch(err) {
-            console.log("Login Failed")
             setErrors('Invalid Username and/or Password')
         }
     }

@@ -38,13 +38,12 @@ export default function ResetPassword() {
         };
         try {
             if (password && verify && password === verify){
-                const response = await userService.post(RESET_PASS_URL, payload,
+                await userService.post(RESET_PASS_URL, payload,
                     {
                         headers: {
                             "Content-Type":'application/json'
                         }
                     });
-                console.log(response.data);
                 setErrors('');
                 setIsChanged(true);
             } else if (password !== verify) {
@@ -55,7 +54,6 @@ export default function ResetPassword() {
                 setErrors('Password cannot be blank.')
             }
         } catch(err) {
-            console.log('Password not updated.');
             setErrors("Invalid Code: Password Not Updated")
         }
     }
