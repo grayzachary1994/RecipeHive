@@ -54,7 +54,7 @@
 
 .recipe-card p {
   font-family: "Inter", sans-serif;
-  margin: 0 10px;
+  /* margin: 0 10px; */
   font-size: 16px;
   color: #666;
 }
@@ -62,11 +62,22 @@
 .recipe-details {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
+  width: 100%;
   padding: 1em;
+  /* border-style: solid; */
 }
 
-.recipe-time > img {
+.recipe-details-element {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 33%;
+  height: 100%;
+  /* border-style: solid; */
+}
+
+.recipe-details-element > img {
   height: 50px;
   width: 50px;
 }

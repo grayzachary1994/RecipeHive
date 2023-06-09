@@ -22,11 +22,17 @@ export default function RecipeCard({id, name, description, imageUrl, steps, ingr
         <h2>{name}</h2>
       </div>
       <div className="recipe-details">
-        <p>{description}</p>
-        <div className="recipe-time">
+        <div className='recipe-details-element'>
+          <p>{description}</p>
+        </div>
+        {/* <div className="recipe-time"> */}
+        <div className='recipe-details-element'>
           <img src={clock} className="clockIcon" alt="clock" />
           <p>{time}</p>
         </div>
+        {/* <div className='recipe-details-element'>
+        </div> */}
+        {/* </div> */}
       </div>
       <div>
         <button className="view-button" onClick={clickViewRecipe}>View Recipe</button>
