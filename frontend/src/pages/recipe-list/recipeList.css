@@ -44,11 +44,12 @@
 
 .recipe-card h2 {
   margin: 10px;
-  font-size: 24px;
-  font-weight: 700;
-  font-family: "Libre Baskerville", serif;
+  font-size: 20pt;
+  font-weight: 400;
+  /* font-family: "Inter", sans-serif; */
+  /* font-family: 'Lilita One', cursive; */
+  font-family: 'Shrikhand', cursive;
   padding: 0;
-  margin: 0;
 }
 
 .recipe-card p {
@@ -84,7 +85,6 @@
   margin: 10px auto;
   padding: 10px 20px;
   background-color: #f5a03b;
-  color: #fff;
   border: none;
   border-radius: 5px;
   font-size: 1rem;
@@ -98,6 +98,7 @@
 }
 
 .popup {
+  font-family: "Inter", sans-serif;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -116,6 +117,7 @@
   top: 0;
   right: 0;
   background-color: transparent;
+  color: white;
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
@@ -125,9 +127,53 @@
   max-width: 100%;
 }
 
+.expanded-ingredients {
+  display: flex;
+  flex-direction: column;
+}
+.list-items {
+  text-align: left;
+}
+
+.list-items ul {
+  margin: 0;
+}
+
+.list-items ol {
+  margin: 0;
+}
+
+.expanded-ingredients h3 {
+  margin: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: left;
+}
+
+.expanded-ingredients li {
+  margin-bottom: .7em;
+}
+
+.expanded-directions h3 {
+  margin: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: left;
+}
+
 .expanded-directions li {
-  margin-bottom: 1em;
-  align-content: flex-end;
+  margin-bottom: .7em;
+}
+
+.expanded-time p {
+  text-align: left;
+}
+
+.expanded-time h3 {
+  margin: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: left;
 }
 
 .expanded-buttons {
@@ -142,7 +188,7 @@
   margin: 10px auto;
   padding: 10px 20px;
   background-color: #f5a03b;
-  color: #fff;
+  color: black;
   border: none;
   border-radius: 5px;
   font-size: 1rem;

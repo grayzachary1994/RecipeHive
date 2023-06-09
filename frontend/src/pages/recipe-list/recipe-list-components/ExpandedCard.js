@@ -39,25 +39,30 @@ export default function ExpandedCard({closeViewRecipe, deleteRecipe, id, name, d
       <div className="expanded-card">
         <img className="expanded-image" src={imageUrl} alt={name} />
         <div className="expanded-title">
-          <h2>{title}</h2>
+          <h2>{name}</h2>
         </div>
         <div className="expanded-details">
-          <p>{description}</p>
+          <p>-{description}-</p>
         </div>
         <div className="expanded-ingredients">
           <h3>Ingredients:</h3>
-          <ul>
-            {ingredients.map(listedIngredients)}
-          </ul>
+          <div className="list-items">
+            <ul>
+              {ingredients.map(listedIngredients)}
+            </ul>
+          </div>
         </div>
         <div className="expanded-directions">
           <h3>Steps:</h3>
-          <ol>
-            {steps.map(listedDirections)}
-          </ol>
+          <div className="list-items">
+            <ol>
+              {steps.map(listedDirections)}
+            </ol>
+          </div>
         </div>
         <div className="expanded-time">
-          <p>{time}</p>
+          <h3>Time to Cook:</h3>
+          <p>-{time}-</p>
         </div>
         <div className="expanded-buttons">
           <Link className="edit-button" to={`/update/${id}`}>Edit</Link>
