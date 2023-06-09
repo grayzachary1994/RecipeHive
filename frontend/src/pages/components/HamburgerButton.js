@@ -5,7 +5,7 @@ import DropdownMenu from './DropdownMenu';
 const HamburgerButton = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const ref = useRef()
+  const ref = useRef();
 
   useEffect(() => {
     const checkIfClickedOutside = e => {
