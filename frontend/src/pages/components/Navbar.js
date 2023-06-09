@@ -5,6 +5,8 @@ import HamburgerButton from './HamburgerButton';
 import SearchBar from './SearchButton';
 
 export default function Navbar({ handleSearch }) {
+
+  
   return (
     <div className='navbar'>
       <HamburgerButton />
