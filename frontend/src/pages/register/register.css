@@ -54,16 +54,17 @@
     font-family: 'Inter', sans-serif;
     border-radius: 5px;
     border: none;
-    height: 40px;
+    height: 2.3rem;
     box-shadow: 2px 2px 1px #996424;
     text-indent: 10px;
   }
   
   .register--fields > button {
     font-family: 'Inter', sans-serif;
+    font-size: 12pt;
     border-radius: 5px;
     border: none;
-    height: 40px;
+    height: 2.3rem;
     box-shadow: 2px 2px 2px #996424;
     cursor: pointer;
     background-color: #f5a03b;
