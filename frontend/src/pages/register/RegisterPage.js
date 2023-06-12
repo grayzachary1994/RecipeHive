@@ -1,11 +1,11 @@
 import React from "react";
-import Navbar from "../components/Navbar";
+import NavbarNoSearch from "../components/NavbarNoSearch";
 import RegisterForm from "./RegisterForm";
 
 export default function Register() {
     return (
         <>
-            <Navbar />
+            <NavbarNoSearch />
             <RegisterForm />
         </>
     )

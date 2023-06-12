@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: flex-start;
   padding-top: 75px;
-  height: 40em;
+  height: 40rem;
   width: auto;
 }
 
@@ -22,7 +22,7 @@
     -webkit-text-stroke-width: 1px;
     text-shadow: black;
     text-align: center;
-    text-shadow: 2px 2px 4px black;
+    text-shadow: 2px 2px 4px #615126;
     margin: 0;
     padding-bottom: 10px;
 }
@@ -35,8 +35,8 @@
     border-style: solid;
     border-color: #fbd466;
     border-radius: 8px;
-    width: 300px;
-    height: 25em;
+    width: 20rem;
+    height: 28em;
     padding: 10px;
     background-color: #fbd466;
     box-shadow: 2px 2px 5px #99813d;
@@ -50,21 +50,22 @@
   
   }
 
-  .register--fields > input {
+  .register--inputs {
     font-family: 'Inter', sans-serif;
     border-radius: 5px;
     border: none;
-    height: 40px;
-    box-shadow: 2px 2px 1px;
+    height: 2.3rem;
+    box-shadow: 2px 2px 1px #996424;
     text-indent: 10px;
   }
   
   .register--fields > button {
     font-family: 'Inter', sans-serif;
+    font-size: 12pt;
     border-radius: 5px;
     border: none;
-    height: 40px;
-    box-shadow: 2px 2px 2px;
+    height: 2.3rem;
+    box-shadow: 2px 2px 2px #996424;
     cursor: pointer;
     background-color: #f5a03b;
   }
@@ -78,4 +79,20 @@
     justify-content: space-around;
     font-family: 'Inter', sans-serif;
     padding-top: 10px;
+  }
+
+  .register--links > button {
+    margin: 0;
+    padding: 5px;
+    cursor: pointer;
+    color: black;
+    font-size: .9em;
+    background-image: linear-gradient(15deg, #ffea31 0%, #e94439 100%);
+    border: none;
+    border-radius: 5px;
+    box-shadow: 2px 2px 4px #996424;
+  }
+
+  .register--links > button:hover {
+    background-image: linear-gradient(15deg, #e94439 0%, #ffea31 100%);
   }

@@ -1,29 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
-const DropdownMenu = ({ isOpen }) => {
-  const menuStyle = isOpen ? { display: 'block' } : { display: 'none' };
-
-  return (
-    <div className="dropdown-menu" style={menuStyle}>
-      <div className='dropdown-container'>
-        <a href="/">View Cookbook</a>
-        <a href="/add">Add Recipe</a>
-        <a href="/login">Logout</a>
-      </div>
-      
-    </div>
-  );
-};
+import DropdownMenu from './DropdownMenu';
 
 const HamburgerButton = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const ref = useRef();
+
+  useEffect(() => {
+    const checkIfClickedOutside = e => {
+      if (isOpen && ref.current && !ref.current.contains(e.target)) {
+        setIsOpen(false)
+      }
+    }
+    document.addEventListener("mousedown", checkIfClickedOutside)
+
+    return () => {
+      document.removeEventListener("mousedown", checkIfClickedOutside)
+    }
+  }, [isOpen])
 
   const handleClick = () => {
     setIsOpen(!isOpen);
   };
 
   return (
-    <div className="hamburger-button" onClick={handleClick}>
+    <div className="hamburger-button" onClick={handleClick} ref={ref}>
       <div className="hamburger-line" />
       <div className="hamburger-line" />
       <div className="hamburger-line" />

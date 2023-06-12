@@ -1,52 +1,59 @@
 package liftoff.recipehive.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.lang.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
+@Table(	name = "users",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = "username"),
+                @UniqueConstraint(columnNames = "email")
+        })
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
-    @NotBlank(message = "Username required.")
-    @Size(min=5, max=15, message="Username must be between 5 and 15 characters.")
+    @NotBlank
+    @Size(max = 20)
     private String username;
 
-    @Email(message="Please enter a valid email address.")
+    @NotBlank
+    @Size(max = 50)
+    @Email
     private String email;
 
-    @Size(min=6, message="Password must be 6 characters or longer.")
+    @NotBlank
+    @Size(max = 120)
     private String password;
 
-    @Size(min=6, message="Password must be 6 characters or longer.")
-    @NotNull(message="Passwords must match.")
-    private String verify;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(	name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
+
+    private String resetPasswordToken;
 
     public User() {
-
     }
 
     public User(String username, String email, String password) {
-        this();
         this.username = username;
         this.email = email;
         this.password = password;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -72,21 +79,22 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-        checkPassword();
     }
 
-    public String getVerify() {
-        return verify;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setVerify(String verify) {
-        this.verify = verify;
-        checkPassword();
+    public void setRoles(Set<Role> roles) {
+
+        this.roles = roles;
     }
 
-    private void checkPassword() {
-        if(password != null && verify != null && !password.equals(verify)) {
-            setVerify(null);
-        }
+    public String getResetPasswordToken() {
+        return resetPasswordToken;
+    }
+
+    public void setResetPasswordToken(String resetPasswordToken) {
+        this.resetPasswordToken = resetPasswordToken;
     }
 }
